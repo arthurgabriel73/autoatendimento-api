@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Pedido {
   

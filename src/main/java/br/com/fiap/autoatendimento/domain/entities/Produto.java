@@ -9,18 +9,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Table(name = "produtos")
 @Entity(name = "Produto")
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Produto {
+
+  public Produto(String nome, String descricao, double preco, String imagem, Categoria categoria) {
+    this.nome = nome;
+    this.descricao = descricao;
+    this.preco = preco;
+    this.imagem = imagem;
+    this.categoria = categoria;
+    this.disponivel = true;
+  }
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
