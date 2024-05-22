@@ -26,14 +26,14 @@ public class Cliente {
   @Embedded
   private Email email;
 
-  public Cliente(Cpf cpf, String nome, Email email) {
-    this.cpf = cpf;
+  public Cliente(String cpf, String nome, String email) {
+    this.cpf = new Cpf(cpf);
     this.nome = validarNome(nome);
-    this.email = email;
+    this.email = new Email(email);
   }
 
   private String validarNome(String nome) {
-    if (nome == null || nome.isEmpty()) {
+    if (nome == null || nome.isEmpty() || nome.length() < 3 || nome.length() > 100 ){
       throw new ValidationException("Nome inválido");
     }
     return nome;
