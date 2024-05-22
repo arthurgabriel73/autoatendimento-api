@@ -5,7 +5,10 @@ import br.com.fiap.autoatendimento.domain.valueobjects.*;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "clientes")
+@Table(name = "clientes", uniqueConstraints = {
+  @UniqueConstraint(name = "cpf_unique", columnNames = "cpf"),
+  @UniqueConstraint(name = "email_unique", columnNames = "email")
+})
 @Entity(name = "Cliente")
 @Getter
 @EqualsAndHashCode(of = "id")
