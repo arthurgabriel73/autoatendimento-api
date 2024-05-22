@@ -11,12 +11,12 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 public class Produto {
 
-  public Produto(String nome, String descricao, double preco, String imagem, Categoria categoria) {
+  public Produto(String nome, String descricao, double preco, String imagem, String categoria) {
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
     this.imagem = imagem;
-    this.categoria = categoria;
+    this.categoria = Categoria.fromValue(categoria);
     this.disponivel = true;
   }
   
