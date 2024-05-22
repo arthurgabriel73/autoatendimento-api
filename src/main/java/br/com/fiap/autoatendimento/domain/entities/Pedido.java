@@ -67,7 +67,7 @@ public class Pedido {
     this.status = StatusPedido.fromValue(status);
   }
 
-  public double getValorTotal() {
+  public double calcularValorTotal() {
     double valorTotal = 0;
     for (Produto produto : produtos) {
       valorTotal += produto.getPreco();

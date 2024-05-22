@@ -33,11 +33,11 @@ public class Produto {
   @Enumerated(EnumType.STRING)
   private Categoria categoria;
 
-  public boolean isDisponivel() {
+  public boolean estaDisponivel() {
     return disponivel;
   }
 
-  public void setDisponivel(boolean disponivel) {
+  public void atualizarDisponibilidade(boolean disponivel) {
     this.disponivel = disponivel;
   }
   
