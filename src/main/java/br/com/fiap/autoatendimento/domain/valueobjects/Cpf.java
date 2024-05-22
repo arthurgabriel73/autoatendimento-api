@@ -7,6 +7,7 @@ import lombok.Getter;
 @Embeddable
 @Getter
 public class Cpf {
+
   private final String value;
 
   public Cpf(String value) {
@@ -50,4 +51,5 @@ public class Cpf {
   private String extractCheckDigit(String cpf) {
       return cpf.substring(9);
   }
+  
 }

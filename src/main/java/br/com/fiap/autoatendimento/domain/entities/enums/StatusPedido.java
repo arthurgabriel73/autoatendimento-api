@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.domain.entities.enums;
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
 
 public enum StatusPedido {
+
   RECEBIDO("Recebido"), 
   EM_PREPARACAO("Em preparação"), 
   PRONTO("Pronto"), 
@@ -27,4 +28,5 @@ public enum StatusPedido {
     }
     throw new ValidationException("Status inválido: " + value);
   }
+  
 }

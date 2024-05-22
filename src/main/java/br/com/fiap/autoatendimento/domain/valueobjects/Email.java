@@ -7,6 +7,7 @@ import lombok.Getter;
 @Embeddable
 @Getter
 public class Email {
+
   private final String EMAIL_REGEX = "^(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
   private final String value;
 
@@ -19,5 +20,6 @@ public class Email {
 
   boolean validate(String email) {
     return email.toLowerCase().matches(EMAIL_REGEX);
-}
+  }
+  
 }

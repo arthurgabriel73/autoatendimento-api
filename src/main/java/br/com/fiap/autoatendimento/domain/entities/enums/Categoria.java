@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.domain.entities.enums;
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
 
 public enum Categoria {
+
   LANCHE("Lanche"),
   ACOMPANHAMENTO("Acompanhamento"),
   BEBIDA("Bebida"),
@@ -26,4 +27,5 @@ public enum Categoria {
     }
     throw new ValidationException("Categoria inválida: " + value);
   }
+  
 }
