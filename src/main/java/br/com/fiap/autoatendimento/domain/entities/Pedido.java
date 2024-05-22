@@ -63,6 +63,10 @@ public class Pedido {
     produtos.remove(produto);
   }
 
+  public void atualizarStatus(String status) {
+    this.status = StatusPedido.fromValue(status);
+  }
+
   public double getValorTotal() {
     double valorTotal = 0;
     for (Produto produto : produtos) {
