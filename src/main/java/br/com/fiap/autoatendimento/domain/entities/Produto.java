@@ -7,6 +7,7 @@ import lombok.*;
 @Table(name = "produtos")
 @Entity(name = "Produto")
 @Getter
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Produto {
 

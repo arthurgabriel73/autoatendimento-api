@@ -9,6 +9,7 @@ import lombok.*;
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
 @Getter
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Pedido {
   

@@ -11,6 +11,7 @@ import lombok.*;
 })
 @Entity(name = "Cliente")
 @Getter
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Cliente {
 
