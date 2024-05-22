@@ -3,13 +3,39 @@ package br.com.fiap.autoatendimento.domain.entities;
 import java.util.List;
 
 import br.com.fiap.autoatendimento.domain.entities.enums.StatusPedido;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Table(name = "pedidos")
+@Entity(name = "Pedido")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Pedido {
-  private Cliente cliente;
-  private List<Produto> produtos;
+  
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(name = "status")
+  @Enumerated(EnumType.STRING)
   private StatusPedido status;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "cliente_id")
+  private Cliente cliente;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+    name = "pedidos_produtos",
+    joinColumns = @JoinColumn(name = "pedido_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "id")
+  )
+  private List<Produto> produtos;
 
   public Pedido(Cliente cliente, List<Produto> produtos) {
     this.cliente = cliente;
