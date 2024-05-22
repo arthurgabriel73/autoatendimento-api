@@ -1,8 +1,10 @@
 package br.com.fiap.autoatendimento.domain.valueobjects;
 
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 
+@Embeddable
 @Getter
 public class Cpf {
   private final String value;
