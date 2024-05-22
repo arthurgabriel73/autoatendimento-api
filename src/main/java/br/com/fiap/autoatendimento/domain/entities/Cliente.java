@@ -1,16 +1,9 @@
 package br.com.fiap.autoatendimento.domain.entities;
 
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
-import br.com.fiap.autoatendimento.domain.valueobjects.Cpf;
-import br.com.fiap.autoatendimento.domain.valueobjects.Email;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import br.com.fiap.autoatendimento.domain.valueobjects.*;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Table(name = "clientes")
 @Entity(name = "Cliente")

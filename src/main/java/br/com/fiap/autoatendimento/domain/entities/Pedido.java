@@ -4,10 +4,7 @@ import java.util.List;
 
 import br.com.fiap.autoatendimento.domain.entities.enums.StatusPedido;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "pedidos")
 @Entity(name = "Pedido")
