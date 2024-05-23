@@ -7,6 +7,8 @@ import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 @Named
 @RequiredArgsConstructor
 public class ClienteDao implements ClientePortOut {
@@ -23,6 +25,16 @@ public class ClienteDao implements ClientePortOut {
                 .build();
 
         clienteRepository.save(entity);
+    }
+
+    @Override
+    public Optional<Cliente> buscarPorCpf(String cpf) {
+        return clienteRepository.findById(cpf)
+                .map(entity -> Cliente.builder()
+                        .cpf(entity.getCpf())
+                        .nome(entity.getNome())
+                        .email(entity.getEmail())
+                        .build());
     }
 
 }

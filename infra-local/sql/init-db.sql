@@ -31,7 +31,7 @@ CREATE TABLE status_pedido(
 
 CREATE TABLE pedido(
     id_pedido SERIAL NOT NULL,
-    cpf VARCHAR(11) NOT NULL,
+    cpf VARCHAR(11),
     id_status_pedido INTEGER NOT NULL,
     PRIMARY KEY(id_pedido),
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (cpf) REFERENCES cliente(cpf),
