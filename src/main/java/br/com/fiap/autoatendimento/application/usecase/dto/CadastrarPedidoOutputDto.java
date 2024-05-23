@@ -1,19 +1,14 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.application.usecase.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StatusPedido {
-
-    private Integer idStatusPedido;
-    private String nome;
-
+public class CadastrarPedidoOutputDto {
+    private Integer idPedido;
 }

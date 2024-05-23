@@ -2,8 +2,8 @@ package br.com.fiap.autoatendimento.adapter.secondary.persistence;
 
 import br.com.fiap.autoatendimento.adapter.secondary.persistence.repository.ProdutoRepository;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
-import br.com.fiap.autoatendimento.domain.model.Categoria;
-import br.com.fiap.autoatendimento.domain.model.Produto;
+import br.com.fiap.autoatendimento.domain.model.produto.Categoria;
+import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 

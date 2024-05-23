@@ -4,6 +4,8 @@ import br.com.fiap.autoatendimento.adapter.secondary.persistence.entity.ClienteE
 import br.com.fiap.autoatendimento.adapter.secondary.persistence.repository.ClienteRepository;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
+import br.com.fiap.autoatendimento.domain.model.cliente.Cpf;
+import br.com.fiap.autoatendimento.domain.model.cliente.Email;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
@@ -31,9 +33,9 @@ public class ClienteDao implements ClientePortOut {
     public Optional<Cliente> buscarPorCpf(String cpf) {
         return clienteRepository.findById(cpf)
                 .map(entity -> Cliente.builder()
-                        .cpf(entity.getCpf())
+                        .cpf(new Cpf(entity.getCpf()))
                         .nome(entity.getNome())
-                        .email(entity.getEmail())
+                        .email(new Email(entity.getEmail()))
                         .build());
     }
 

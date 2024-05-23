@@ -7,6 +7,7 @@ import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cpf;
 import br.com.fiap.autoatendimento.domain.model.cliente.Email;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Named
@@ -15,6 +16,7 @@ public class CadastrarClienteUseCase implements CadastrarClientePortIn {
 
     private final ClientePortOut clientePortOut;
 
+    @Transactional
     @Override
     public void executar(CadastrarClienteInputDto input) {
 

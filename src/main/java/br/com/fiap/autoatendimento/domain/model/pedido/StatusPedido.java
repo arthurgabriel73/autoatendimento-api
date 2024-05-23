@@ -7,6 +7,7 @@ import lombok.Value;
 @Builder
 public class StatusPedido {
 
+	Integer idStatusPedido;
 	String nome;
   
 }
