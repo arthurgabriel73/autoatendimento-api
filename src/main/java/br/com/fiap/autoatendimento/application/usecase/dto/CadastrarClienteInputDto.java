@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.application.usecase.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
-
+public class CadastrarClienteInputDto {
     private String cpf;
     private String nome;
     private String email;
-
 }
