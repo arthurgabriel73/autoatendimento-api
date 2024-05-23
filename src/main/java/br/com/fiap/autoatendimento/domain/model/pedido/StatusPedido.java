@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.domain.model.pedido;
 
 import lombok.Builder;
 import lombok.Value;

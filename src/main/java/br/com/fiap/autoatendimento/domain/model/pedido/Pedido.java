@@ -1,8 +1,10 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.domain.model.pedido;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
+import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.domain.model.produto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

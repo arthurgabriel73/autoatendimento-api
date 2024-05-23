@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.domain.model;
+package br.com.fiap.autoatendimento.domain.model.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cliente {
 
-	private String cpf;
+	private Cpf cpf;
 	private String nome;
-	private String email;
+	private Email email;
 
+	public String getCpf() {
+		return cpf.getValue();
+	}
+
+	public String getEmail() {
+		return email.getValue();
+	}
 }
