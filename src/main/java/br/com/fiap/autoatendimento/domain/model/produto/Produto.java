@@ -15,7 +15,7 @@ public class Produto {
 
 	private String nome;
 	private String descricao;
-	private BigDecimal preco;
+	private Double preco;
 	private String imagem;
 	private Boolean ativo;
 	private Categoria categoria;

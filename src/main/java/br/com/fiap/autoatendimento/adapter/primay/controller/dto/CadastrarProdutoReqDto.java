@@ -1,10 +1,9 @@
 package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
 
-import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,15 +23,15 @@ public class CadastrarProdutoReqDto {
     @JsonProperty("descricao")
     private String descricao;
 
-    @NotBlank
+    @PositiveOrZero
     @JsonProperty("preco")
-    private BigDecimal preco;
+    private Double preco;
 
     @NotBlank
     @JsonProperty("imagem")
     private String imagem;
 
-    @NotBlank
+    @NotNull
     @JsonProperty("ativo")
     private Boolean ativo;
 

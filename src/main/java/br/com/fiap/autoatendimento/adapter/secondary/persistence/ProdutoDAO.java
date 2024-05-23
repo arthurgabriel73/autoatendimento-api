@@ -1,5 +1,7 @@
 package br.com.fiap.autoatendimento.adapter.secondary.persistence;
 
+import java.math.BigDecimal;
+
 import br.com.fiap.autoatendimento.adapter.secondary.persistence.entity.CategoriaEntity;
 import br.com.fiap.autoatendimento.adapter.secondary.persistence.entity.ProdutoEntity;
 import br.com.fiap.autoatendimento.adapter.secondary.persistence.repository.ProdutoRepository;
@@ -20,7 +22,7 @@ public class ProdutoDAO implements ProdutoPortOut {
         final ProdutoEntity entity = ProdutoEntity.builder()
                 .nome(produto.getNome())
                 .descricao(produto.getDescricao())
-                .preco(produto.getPreco())
+                .preco(new BigDecimal(produto.getPreco()))
                 .imagem(produto.getImagem())
                 .ativo(produto.getAtivo())
                 .categoria(

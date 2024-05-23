@@ -1,6 +1,5 @@
 package br.com.fiap.autoatendimento.domain.model.pedido;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,12 +38,10 @@ public class Pedido {
 		}
 	}
 
-	public BigDecimal calcularValorTotal() {
-		BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal amt : produtos.stream().map(Produto::getPreco).toList()) {
-            sum = sum.add(amt);
-        }
-		return sum;
+	public double calcularValorTotal() {
+		return produtos.stream()
+				.mapToDouble(Produto::getPreco)
+				.sum();
 	}
   
 }

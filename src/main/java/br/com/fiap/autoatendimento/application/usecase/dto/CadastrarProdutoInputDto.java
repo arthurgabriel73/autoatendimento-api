@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class CadastrarProdutoInputDto {
     private String nome;
     private String descricao;
-    private BigDecimal preco;
+    private Double preco;
     private String imagem;
     private Boolean ativo;
     private String categoria;
