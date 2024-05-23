@@ -15,7 +15,7 @@ public class Produto {
 	private String descricao;
 	private Double preco;
 	private String imagem;
-	private Boolean disponivel;
+	private Boolean ativo;
 	private Categoria categoria;
   
 }
