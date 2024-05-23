@@ -15,31 +15,31 @@ import lombok.NoArgsConstructor;
 // Aggregate Root
 public class Pedido {
 
-  private StatusPedido status;
-  private Cliente cliente;
-  private List<Produto> produtos;
+	private StatusPedido status;
+	private Cliente cliente;
+	private List<Produto> produtos;
 
-  public void atualizarStatus(StatusPedido status) {
-    this.status = status;
-  }
+	public void atualizarStatus(StatusPedido status) {
+	this.status = status;
+	}
 
-  public void adicionarProduto(Produto produto) {
-    if (produtos == null) {
-      produtos = new ArrayList<>();
-    }
-    produtos.add(produto);
-  }
+	public void adicionarProduto(Produto produto) {
+	if (produtos == null) {
+		produtos = new ArrayList<>();
+	}
+	produtos.add(produto);
+	}
 
-  public void removerProduto(Produto produto) {
-    if (produtos != null) {
-      produtos.remove(produto);
-    }
-  }
+	public void removerProduto(Produto produto) {
+	if (produtos != null) {
+		produtos.remove(produto);
+	}
+	}
 
-  public double calcularValorTotal() {
-    return produtos.stream()
-      .mapToDouble(Produto::getPreco)
-      .sum();
-  }
+	public double calcularValorTotal() {
+	return produtos.stream()
+		.mapToDouble(Produto::getPreco)
+		.sum();
+	}
   
 }

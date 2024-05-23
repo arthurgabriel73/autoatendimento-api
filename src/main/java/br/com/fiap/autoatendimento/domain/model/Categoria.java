@@ -7,6 +7,6 @@ import lombok.Value;
 @Builder
 public class Categoria {
 
-  String nome;
+	String nome;
 
 }

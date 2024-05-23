@@ -7,6 +7,6 @@ import lombok.Value;
 @Builder
 public class StatusPedido {
 
-  String nome;
+	String nome;
   
 }
