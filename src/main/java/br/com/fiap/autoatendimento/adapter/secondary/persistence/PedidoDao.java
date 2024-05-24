@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Named
@@ -30,6 +31,7 @@ public class PedidoDao implements PedidoPortOut {
     public Integer salvar(Pedido pedido) {
 
         final PedidoEntity entity = PedidoEntity.builder()
+                .idPedido(Objects.isNull(pedido.getIdPedido()) ? null : pedido.getIdPedido())
                 .cliente(Objects.isNull(pedido.getCliente()) ?
                         null : ClienteEntity.builder().cpf(pedido.getCliente().getCpf()).build())
                 .produtos(pedido.getProdutos().stream()
@@ -50,35 +52,44 @@ public class PedidoDao implements PedidoPortOut {
 
         List<PedidoEntity> pedidos = pedidoRepository.findAll();
 
-        return pedidos.stream()
-                .map(entity -> Pedido.builder()
-                        .idPedido(entity.getIdPedido())
-                        .cliente(Objects.isNull(entity.getCliente()) ?
-                                null : Cliente.builder()
-                                .cpf(new Cpf(entity.getCliente().getCpf()))
-                                .nome(entity.getCliente().getNome())
-                                .email(new Email(entity.getCliente().getEmail()))
-                                .build())
-                        .produtos(entity.getProdutos().stream()
-                                .map(produtoEntity -> Produto.builder()
-                                        .idProduto(produtoEntity.getIdProduto())
-                                        .nome(produtoEntity.getNome())
-                                        .descricao(produtoEntity.getDescricao())
-                                        .preco(produtoEntity.getPreco())
-                                        .imagem(produtoEntity.getImagem())
-                                        .ativo(produtoEntity.getAtivo())
-                                        .categoria(Categoria.builder()
-                                                .idCategoria(produtoEntity.getCategoria().getIdCategoria())
-                                                .nome(produtoEntity.getCategoria().getNome())
-                                                .build())
-                                        .build())
-                                .collect(Collectors.toList()))
-                        .status(StatusPedido.builder()
-                                .idStatusPedido(entity.getStatusPedido().getIdStatusPedido())
-                                .nome(entity.getStatusPedido().getNome())
-                                .build())
+        return pedidos.stream().map(this::mapEntityToModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Pedido> buscarPorIdPedido(Integer idPedido) {
+
+        return pedidoRepository.findById(idPedido).map(this::mapEntityToModel);
+    }
+
+    private Pedido mapEntityToModel(PedidoEntity entity) {
+
+        return Pedido.builder()
+                .idPedido(entity.getIdPedido())
+                .cliente(Objects.isNull(entity.getCliente()) ?
+                        null : Cliente.builder()
+                        .cpf(new Cpf(entity.getCliente().getCpf()))
+                        .nome(entity.getCliente().getNome())
+                        .email(new Email(entity.getCliente().getEmail()))
                         .build())
-                .collect(Collectors.toList());
+                .produtos(entity.getProdutos().stream()
+                        .map(produtoEntity -> Produto.builder()
+                                .idProduto(produtoEntity.getIdProduto())
+                                .nome(produtoEntity.getNome())
+                                .descricao(produtoEntity.getDescricao())
+                                .preco(produtoEntity.getPreco())
+                                .imagem(produtoEntity.getImagem())
+                                .ativo(produtoEntity.getAtivo())
+                                .categoria(Categoria.builder()
+                                        .idCategoria(produtoEntity.getCategoria().getIdCategoria())
+                                        .nome(produtoEntity.getCategoria().getNome())
+                                        .build())
+                                .build())
+                        .collect(Collectors.toList()))
+                .status(StatusPedido.builder()
+                        .idStatusPedido(entity.getStatusPedido().getIdStatusPedido())
+                        .nome(entity.getStatusPedido().getNome())
+                        .build())
+                .build();
     }
 
 }

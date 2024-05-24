@@ -27,22 +27,27 @@ public class Pedido {
 	}
 
 	public void adicionarProduto(Produto produto) {
+
 		if (produtos == null) {
 			produtos = new ArrayList<>();
 		}
+
 		produtos.add(produto);
 	}
 
 	public void removerProduto(Produto produto) {
+
 		if (produtos != null) {
 			produtos.remove(produto);
 		}
+
 	}
 
 	public double calcularValorTotal() {
+
 		return produtos.stream()
-				.mapToDouble(Produto::getPreco)
-				.sum();
+			.mapToDouble(Produto::getPreco)
+			.sum();
 	}
   
 }
