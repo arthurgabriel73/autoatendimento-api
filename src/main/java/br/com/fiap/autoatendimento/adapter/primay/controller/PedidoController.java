@@ -1,10 +1,13 @@
 package br.com.fiap.autoatendimento.adapter.primay.controller;
 
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.AtualizarStatusPedidoReqDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarPedidoReqDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.ListarPedidosResDto;
+import br.com.fiap.autoatendimento.application.port.in.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.ListarPedidosPortIn;
+import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarStatusPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.ListarPedidosOutputDto;
@@ -26,6 +29,7 @@ public class PedidoController {
 
     public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
     private final CadastrarPedidoPortIn cadastrarPedidoPortIn;
+    private final AtualizarStatusPedidoPortIn atualizarStatusPedidoPortIn;
     private final ListarPedidosPortIn listarPedidosPortIn;
 
     @PostMapping
@@ -40,6 +44,19 @@ public class PedidoController {
         final CadastrarPedidoOutputDto output = cadastrarPedidoPortIn.executar(input);
 
         return CadastrarPedidoResDto.builder().idPedido(output.getIdPedido().toString()).build();
+    }
+
+    @PatchMapping("/{idPedido}/status")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarStatus(@PathVariable("idPedido") Integer idPedido,
+                                @Valid @RequestBody AtualizarStatusPedidoReqDto request) {
+
+        final AtualizarStatusPedidoInputDto input = AtualizarStatusPedidoInputDto.builder()
+                .idPedido(idPedido)
+                .idStatusPedido(request.getIdStatusPedido())
+                .build();
+
+        atualizarStatusPedidoPortIn.executar(input);
     }
 
     @GetMapping
