@@ -39,14 +39,14 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
             cliente = null;
         } else {
             cliente = clientePortOut.buscarPorCpf(input.getCpf())
-                    .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente informado não cadastrado."));
+                    .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente informado nao encontrado."));
         }
 
         final List<Produto> produtos = new ArrayList<>();
 
         for (Integer idProduto : input.getProdutos()) {
             produtos.add(produtoPortOut.buscarPorIdProduto(idProduto)
-                    .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado não cadastrado.")));
+                    .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado nao encontrado.")));
         }
 
         final Pedido pedido = Pedido.builder()

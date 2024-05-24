@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.application.usecase;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarClientePortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarClienteInputDto;
+import br.com.fiap.autoatendimento.application.usecase.exception.ClienteJaCadastradoException;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cpf;
 import br.com.fiap.autoatendimento.domain.model.cliente.Email;
@@ -25,6 +26,10 @@ public class CadastrarClienteUseCase implements CadastrarClientePortIn {
                 .nome(input.getNome())
                 .email(new Email(input.getEmail()))
                 .build();
+
+        if (clientePortOut.buscarPorCpf(input.getCpf()).isPresent()) {
+            throw new ClienteJaCadastradoException("Cliente ja cadastrado.");
+        }
 
         clientePortOut.salvar(cliente);
     }

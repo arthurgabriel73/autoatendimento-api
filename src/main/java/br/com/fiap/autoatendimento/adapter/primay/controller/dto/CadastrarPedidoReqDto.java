@@ -1,6 +1,7 @@
 package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class CadastrarPedidoReqDto {
     private String cpf;
 
     @NotNull
+    @NotEmpty
     @JsonProperty("produtos")
     private List<Integer> produtos;
 

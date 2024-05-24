@@ -53,12 +53,12 @@ public class PedidoDao implements PedidoPortOut {
         return pedidos.stream()
                 .map(entity -> Pedido.builder()
                         .idPedido(entity.getIdPedido())
-                        .cliente(Objects.isNull(entity.getCliente()) ? null :
-                                Cliente.builder()
-                                        .cpf(new Cpf(entity.getCliente().getCpf()))
-                                        .nome(entity.getCliente().getNome())
-                                        .email(new Email(entity.getCliente().getEmail()))
-                                        .build())
+                        .cliente(Objects.isNull(entity.getCliente()) ?
+                                null : Cliente.builder()
+                                .cpf(new Cpf(entity.getCliente().getCpf()))
+                                .nome(entity.getCliente().getNome())
+                                .email(new Email(entity.getCliente().getEmail()))
+                                .build())
                         .produtos(entity.getProdutos().stream()
                                 .map(produtoEntity -> Produto.builder()
                                         .idProduto(produtoEntity.getIdProduto())

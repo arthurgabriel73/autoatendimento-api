@@ -49,8 +49,8 @@ public class PedidoController {
                 .pedidos(output.getPedidos().stream()
                         .map(pedido -> ListarPedidosResDto.Pedido.builder()
                                 .idPedido(pedido.getIdPedido().toString())
-                                .cliente(Objects.isNull(pedido.getCliente()) ? null :
-                                        ListarPedidosResDto.Cliente.builder()
+                                .cliente(Objects.isNull(pedido.getCliente()) ?
+                                        null : ListarPedidosResDto.Cliente.builder()
                                         .cpf(pedido.getCliente().getCpf())
                                         .nome(pedido.getCliente().getNome())
                                         .email(pedido.getCliente().getEmail())
