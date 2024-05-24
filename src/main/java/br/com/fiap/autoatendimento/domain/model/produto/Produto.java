@@ -1,7 +1,5 @@
 package br.com.fiap.autoatendimento.domain.model.produto;
 
-import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
