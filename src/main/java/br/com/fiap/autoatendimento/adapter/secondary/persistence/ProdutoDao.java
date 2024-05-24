@@ -18,7 +18,7 @@ public class ProdutoDao implements ProdutoPortOut {
     private final ProdutoRepository produtoRepository;
 
     @Override
-    public void salvar(Produto produto) {
+    public Integer salvar(Produto produto) {
         
         final ProdutoEntity entity = ProdutoEntity.builder()
                 .nome(produto.getNome())
@@ -33,7 +33,7 @@ public class ProdutoDao implements ProdutoPortOut {
                     )
                 .build();
         
-        produtoRepository.save(entity);
+        return produtoRepository.save(entity).getIdProduto();
     }
 
     @Override

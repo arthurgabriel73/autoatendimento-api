@@ -5,6 +5,6 @@ import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import java.util.Optional;
 
 public interface ProdutoPortOut {
-    void salvar(Produto produto);
+    Integer salvar(Produto produto);
     Optional<Produto> buscarPorIdProduto(Integer idProduto);
 }
