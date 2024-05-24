@@ -35,6 +35,9 @@ public class ListarPedidosResDto {
         @JsonProperty("status_pedido")
         private StatusPedido statusPedido;
 
+        @JsonProperty("valor_total")
+        private String valorTotal;
+
     }
 
     @Data

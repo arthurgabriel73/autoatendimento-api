@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PedidoController {
 
+    public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
     private final CadastrarPedidoPortIn cadastrarPedidoPortIn;
     private final ListarPedidosPortIn listarPedidosPortIn;
 
@@ -60,7 +62,7 @@ public class PedidoController {
                                                 .idProduto(produto.getIdProduto().toString())
                                                 .nome(produto.getNome())
                                                 .descricao(produto.getDescricao())
-                                                .preco(produto.getPreco().toString())
+                                                .preco(DECIMAL_FORMAT_PRECO.format(produto.getPreco()))
                                                 .imagem(produto.getImagem())
                                                 .ativo(produto.getAtivo().toString())
                                                 .categoria(ListarPedidosResDto.Categoria.builder()
@@ -73,6 +75,7 @@ public class PedidoController {
                                         .idStatusPedido(pedido.getStatus().getIdStatusPedido().toString())
                                         .nome(pedido.getStatus().getNome())
                                         .build())
+                                .valorTotal(DECIMAL_FORMAT_PRECO.format(pedido.calcularValorTotal()))
                                 .build())
                         .collect(Collectors.toList()))
                 .build();

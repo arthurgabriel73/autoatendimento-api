@@ -23,26 +23,32 @@ public class Pedido {
 	private StatusPedido status;
 
 	public void atualizarStatus(StatusPedido status) {
-	this.status = status;
+
+		this.status = status;
 	}
 
 	public void adicionarProduto(Produto produto) {
-	if (produtos == null) {
-		produtos = new ArrayList<>();
-	}
-	produtos.add(produto);
+
+		if (produtos == null) {
+			produtos = new ArrayList<>();
+		}
+
+		produtos.add(produto);
 	}
 
 	public void removerProduto(Produto produto) {
-	if (produtos != null) {
-		produtos.remove(produto);
-	}
+
+		if (produtos != null) {
+			produtos.remove(produto);
+		}
+
 	}
 
 	public double calcularValorTotal() {
-	return produtos.stream()
-		.mapToDouble(Produto::getPreco)
-		.sum();
+
+		return produtos.stream()
+			.mapToDouble(Produto::getPreco)
+			.sum();
 	}
   
 }
