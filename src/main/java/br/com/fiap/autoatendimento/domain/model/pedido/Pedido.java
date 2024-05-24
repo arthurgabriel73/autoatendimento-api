@@ -17,9 +17,10 @@ import lombok.NoArgsConstructor;
 // Aggregate Root
 public class Pedido {
 
-	private StatusPedido status;
+	private Integer idPedido;
 	private Cliente cliente;
 	private List<Produto> produtos;
+	private StatusPedido status;
 
 	public void atualizarStatus(StatusPedido status) {
 		this.status = status;

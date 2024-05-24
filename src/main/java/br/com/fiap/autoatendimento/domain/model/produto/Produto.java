@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Produto {
 
+	private Integer idProduto;
 	private String nome;
 	private String descricao;
 	private Double preco;
