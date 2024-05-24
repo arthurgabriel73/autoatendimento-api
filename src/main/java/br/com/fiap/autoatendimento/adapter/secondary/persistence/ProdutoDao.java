@@ -9,7 +9,6 @@ import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @Named
@@ -24,7 +23,7 @@ public class ProdutoDao implements ProdutoPortOut {
         final ProdutoEntity entity = ProdutoEntity.builder()
                 .nome(produto.getNome())
                 .descricao(produto.getDescricao())
-                .preco(new BigDecimal(produto.getPreco()))
+                .preco(produto.getPreco())
                 .imagem(produto.getImagem())
                 .ativo(produto.getAtivo())
                 .categoria(
