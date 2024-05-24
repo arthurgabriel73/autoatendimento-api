@@ -19,14 +19,19 @@ public class CadastrarProdutoUseCase implements CadastrarProdutoPortIn {
     @Transactional
     @Override
     public CadastrarProdutoOutputDto executar(CadastrarProdutoInputDto input) {
-        
+        // TODO: Obter id da categoria a partir do nome da categoria
+        final Integer idCategoria = 1; 
+
         final Produto produto = Produto.builder()
                 .nome(input.getNome())
                 .descricao(input.getDescricao())
                 .preco(input.getPreco())
                 .imagem(input.getImagem())
                 .ativo(input.getAtivo())
-                .categoria(Categoria.builder().nome(input.getCategoria()).build())
+                .categoria(Categoria.builder()
+                        .nome(input.getCategoria())
+                        .idCategoria(idCategoria)
+                        .build())
                 .build();
         
         final Integer idProduto = produtoPortOut.salvar(produto);
