@@ -9,7 +9,9 @@ import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Named
 @RequiredArgsConstructor
@@ -51,6 +53,27 @@ public class ProdutoDao implements ProdutoPortOut {
                                 .build())
                         .imagem(entity.getImagem())
                         .build());
+    }
+
+    @Override
+    public List<Produto> listar() {
+
+        List<ProdutoEntity> produtos = produtoRepository.findAll();
+
+        return produtos.stream()
+                .map(entity -> Produto.builder()
+                        .idProduto(entity.getIdProduto())
+                        .nome(entity.getNome())
+                        .descricao(entity.getDescricao())
+                        .preco(entity.getPreco())
+                        .imagem(entity.getImagem())
+                        .ativo(entity.getAtivo())
+                        .categoria(Categoria.builder()
+                                .idCategoria(entity.getCategoria().getIdCategoria())
+                                .nome(entity.getCategoria().getNome())
+                                .build())
+                        .build())
+                .collect(Collectors.toList());
     }
 
 }

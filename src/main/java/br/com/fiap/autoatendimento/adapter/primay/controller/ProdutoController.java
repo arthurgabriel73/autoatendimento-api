@@ -1,18 +1,22 @@
 package br.com.fiap.autoatendimento.adapter.primay.controller;
 
+import java.util.stream.Collectors;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
-import jakarta.validation.Valid;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarProdutoReqDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarProdutoResDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.ListarProdutosResDto;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.dto.ListarProdutosOutputDto;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
-
 
 @RestController
 @RequestMapping("/produtos")
@@ -21,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class ProdutoController {
 
     private final CadastrarProdutoPortIn cadastrarProdutoPortIn;
+    private final ListarProdutosPortIn listarProdutosPortIn;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,4 +45,30 @@ public class ProdutoController {
         return CadastrarProdutoResDto.builder().idProduto(output.getIdProduto().toString()).build();
     }
     
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public ListarProdutosResDto listar() {
+
+        final ListarProdutosOutputDto output = listarProdutosPortIn.executar();
+
+        return ListarProdutosResDto.builder()
+                .produtos(output.getProdutos().stream()
+                        .map(produto -> ListarProdutosResDto.Produto.builder()
+                                .idProduto(produto.getIdProduto().toString())
+                                .nome(produto.getNome())
+                                .descricao(produto.getDescricao())
+                                .preco(produto.getPreco().toString())
+                                .imagem(produto.getImagem())
+                                .ativo(produto.getAtivo().toString())
+                                .categoria(ListarProdutosResDto.Categoria.builder()
+                                        .idCategoria(produto.getCategoria().getIdCategoria().toString())
+                                        .nome(produto.getCategoria().getNome())
+                                        .build())
+                                .build())
+                        .collect(Collectors.toList()))
+                .build();
+
+    }
 }
+
+
