@@ -19,6 +19,7 @@ import java.util.List;
 public class ProdutoEntity implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_produto")
     private Integer idProduto;
 
