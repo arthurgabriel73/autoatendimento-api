@@ -23,7 +23,6 @@ public class ProdutoDao implements ProdutoPortOut {
     public Integer salvar(Produto produto) {
         
         final ProdutoEntity entity = ProdutoEntity.builder()
-                .idProduto(produto.getIdProduto())
                 .nome(produto.getNome())
                 .descricao(produto.getDescricao())
                 .preco(produto.getPreco())
@@ -32,6 +31,7 @@ public class ProdutoDao implements ProdutoPortOut {
                 .categoria(
                     CategoriaEntity.builder()
                         .nome(produto.getCategoria().getNome())
+                        .idCategoria(produto.getCategoria().getIdCategoria())
                         .build()
                     )
                 .build();
