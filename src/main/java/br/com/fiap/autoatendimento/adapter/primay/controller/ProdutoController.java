@@ -14,6 +14,7 @@ import br.com.fiap.autoatendimento.adapter.primay.controller.dto.ListarProdutosR
 import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
+import br.com.fiap.autoatendimento.application.port.in.RemoverProdutoPortIn;
 import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoInputDto;
@@ -32,6 +33,7 @@ public class ProdutoController {
     private final CadastrarProdutoPortIn cadastrarProdutoPortIn;
     private final ListarProdutosPortIn listarProdutosPortIn;
     private final AtualizarProdutoPortIn atualizarProdutoPortIn;
+    private final RemoverProdutoPortIn removerProdutoPortIn;
 
     @PostMapping
 	@Transactional
@@ -95,6 +97,15 @@ public class ProdutoController {
 
 		return AtualizarProdutoResDto.builder().idProduto(output.getIdProduto().toString()).build();
     }
+
+	@DeleteMapping("/{idProduto}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@Transactional
+	public void remover(@PathVariable("idProduto") Integer idProduto) {
+
+		removerProdutoPortIn.executar(idProduto);
+
+	}
 
 }
 

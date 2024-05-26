@@ -26,7 +26,7 @@ public class AtualizarProdutoUseCase implements AtualizarProdutoPortIn {
         final Produto produto = produtoPortOut.buscarPorIdProduto(input.getIdProduto())
                 .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não encontrado."));
 
-        final Categoria categoria = categoriaPortOut.buscarPorNomeCategoria(input.getCategoria())
+        final Categoria categoria = categoriaPortOut.buscarPorNome(input.getCategoria())
                 .orElseThrow(() -> new CategoriaNaoEncontradaException("Categoria não encontrada."));
 
         produto.setIdProduto(input.getIdProduto());

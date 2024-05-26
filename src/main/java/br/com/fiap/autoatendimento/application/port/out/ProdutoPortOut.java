@@ -10,5 +10,6 @@ public interface ProdutoPortOut {
     Optional<Produto> buscarPorIdProduto(Integer idProduto);
     List<Produto> listar(String categoria);
     Integer atualizar(Produto produto);
+    void remover(Integer idProduto);
     
 }

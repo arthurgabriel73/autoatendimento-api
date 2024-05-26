@@ -5,5 +5,5 @@ import java.util.Optional;
 import br.com.fiap.autoatendimento.domain.model.produto.Categoria;
 
 public interface CategoriaPortOut {
-    Optional<Categoria> buscarPorNomeCategoria(String nome);
+    Optional<Categoria> buscarPorNome(String nome);
 }

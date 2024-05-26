@@ -15,7 +15,7 @@ public class CategoriaDao implements CategoriaPortOut {
     private final CategoriaRepository categoriaRepository;
     
     @Override
-    public Optional<Categoria> buscarPorNomeCategoria(String nome) {
+    public Optional<Categoria> buscarPorNome(String nome) {
 
         return categoriaRepository.findByNome(nome).map(entity ->
                 Categoria.builder()
