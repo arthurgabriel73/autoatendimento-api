@@ -20,7 +20,6 @@ import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoOutpu
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.dto.ListarProdutosOutputDto;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +35,6 @@ public class ProdutoController {
     private final RemoverProdutoPortIn removerProdutoPortIn;
 
     @PostMapping
-	@Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public CadastrarProdutoResDto cadastrar(@RequestBody @Valid CadastrarProdutoReqDto request) {
 
@@ -79,8 +77,7 @@ public class ProdutoController {
     }
 
 	@PutMapping
-	@Transactional
-	@ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.OK)
     public AtualizarProdutoResDto atualizar(@RequestBody @Valid AtualizarProdutoReqDto request) {
 
         final AtualizarProdutoInputDto input = AtualizarProdutoInputDto.builder()
@@ -100,7 +97,6 @@ public class ProdutoController {
 
 	@DeleteMapping("/{idProduto}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@Transactional
 	public void remover(@PathVariable("idProduto") Integer idProduto) {
 
 		removerProdutoPortIn.executar(idProduto);

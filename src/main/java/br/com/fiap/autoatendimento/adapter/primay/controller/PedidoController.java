@@ -61,6 +61,7 @@ public class PedidoController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public ListarPedidosResDto listar() {
 
         final ListarPedidosOutputDto output = listarPedidosPortIn.executar();
