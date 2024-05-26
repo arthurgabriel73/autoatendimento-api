@@ -33,6 +33,8 @@ public class AtualizarProdutoUseCase implements AtualizarProdutoPortIn {
         produto.setNome(input.getNome());
         produto.setDescricao(input.getDescricao());
         produto.setPreco(input.getPreco());
+        produto.setImagem(input.getImagem());
+        produto.setAtivo(input.getAtivo());
         produto.setCategoria(categoria);
 
         final Integer idProduto = produtoPortOut.atualizar(produto);
