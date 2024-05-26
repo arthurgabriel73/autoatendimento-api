@@ -1,6 +1,8 @@
 package br.com.fiap.autoatendimento.configuration;
 
 import br.com.fiap.autoatendimento.application.usecase.exception.*;
+import br.com.fiap.autoatendimento.domain.exceptions.BusinessException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -88,5 +90,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
     }
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<Object> handleBusinessException(BusinessException exception,
+                                                          WebRequest request) {
+
+        final ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST, exception.getMessage());
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
+    }
 
 }
