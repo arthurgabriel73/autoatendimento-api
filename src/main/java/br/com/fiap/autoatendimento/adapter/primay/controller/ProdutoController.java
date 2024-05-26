@@ -11,10 +11,10 @@ import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.Cadastr
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.AtualizarProdutoResDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.CadastrarProdutoResDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.ListarProdutosResDto;
-import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
-import br.com.fiap.autoatendimento.application.port.in.CadastrarProdutoPortIn;
-import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
-import br.com.fiap.autoatendimento.application.port.in.RemoverProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.AtualizarProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.CadastrarProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.ListarProdutosPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.RemoverProdutoPortIn;
 import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.produto.dto.CadastrarProdutoInputDto;

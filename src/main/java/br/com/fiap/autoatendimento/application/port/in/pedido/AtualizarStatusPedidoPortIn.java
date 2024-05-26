@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.application.port.in;
+package br.com.fiap.autoatendimento.application.port.in.pedido;
 
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.AtualizarStatusPedidoInputDto;
 

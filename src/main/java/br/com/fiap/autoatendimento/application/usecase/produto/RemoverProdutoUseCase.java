@@ -1,6 +1,6 @@
 package br.com.fiap.autoatendimento.application.usecase.produto;
 
-import br.com.fiap.autoatendimento.application.port.in.RemoverProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.RemoverProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
 import jakarta.inject.Named;

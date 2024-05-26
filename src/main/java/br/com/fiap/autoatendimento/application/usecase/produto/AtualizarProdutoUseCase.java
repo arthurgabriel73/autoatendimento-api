@@ -1,6 +1,6 @@
 package br.com.fiap.autoatendimento.application.usecase.produto;
 
-import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.AtualizarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.CategoriaPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.CategoriaNaoEncontradaException;

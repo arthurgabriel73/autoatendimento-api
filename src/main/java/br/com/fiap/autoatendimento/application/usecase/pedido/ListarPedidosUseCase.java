@@ -1,6 +1,6 @@
 package br.com.fiap.autoatendimento.application.usecase.pedido;
 
-import br.com.fiap.autoatendimento.application.port.in.ListarPedidosPortIn;
+import br.com.fiap.autoatendimento.application.port.in.pedido.ListarPedidosPortIn;
 import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.ListarPedidosOutputDto;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;

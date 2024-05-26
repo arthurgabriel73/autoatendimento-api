@@ -1,6 +1,6 @@
 package br.com.fiap.autoatendimento.application.usecase.cliente;
 
-import br.com.fiap.autoatendimento.application.port.in.BuscarClientePorCpfPortIn;
+import br.com.fiap.autoatendimento.application.port.in.cliente.BuscarClientePorCpfPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
 import br.com.fiap.autoatendimento.application.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;

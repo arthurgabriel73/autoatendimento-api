@@ -4,9 +4,9 @@ import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.Atualiz
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.CadastrarPedidoReqDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.ListarPedidosResDto;
-import br.com.fiap.autoatendimento.application.port.in.AtualizarStatusPedidoPortIn;
-import br.com.fiap.autoatendimento.application.port.in.CadastrarPedidoPortIn;
-import br.com.fiap.autoatendimento.application.port.in.ListarPedidosPortIn;
+import br.com.fiap.autoatendimento.application.port.in.pedido.AtualizarStatusPedidoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
+import br.com.fiap.autoatendimento.application.port.in.pedido.ListarPedidosPortIn;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.AtualizarStatusPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;

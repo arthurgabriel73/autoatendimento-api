@@ -2,7 +2,7 @@ package br.com.fiap.autoatendimento.application.usecase.produto;
 
 import java.util.List;
 
-import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
+import br.com.fiap.autoatendimento.application.port.in.produto.ListarProdutosPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.produto.dto.ListarProdutosOutputDto;
 import br.com.fiap.autoatendimento.domain.model.produto.Produto;
