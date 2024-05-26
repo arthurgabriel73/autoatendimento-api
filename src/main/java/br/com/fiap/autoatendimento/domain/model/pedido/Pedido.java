@@ -23,7 +23,6 @@ public class Pedido {
 	private StatusPedido status;
 
 	public void atualizarStatus(StatusPedido status) {
-
 		this.status = status;
 	}
 
