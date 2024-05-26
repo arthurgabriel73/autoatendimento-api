@@ -61,7 +61,6 @@ public class ProdutoDao implements ProdutoPortOut {
 
         List<ProdutoEntity> produtos = produtoRepository.findByCategoriaNome(categoria);
 
-
         return produtos.stream()
                 .map(entity -> Produto.builder()
                         .idProduto(entity.getIdProduto())
