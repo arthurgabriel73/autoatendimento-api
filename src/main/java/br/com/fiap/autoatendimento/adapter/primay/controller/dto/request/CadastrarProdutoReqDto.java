@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
+package br.com.fiap.autoatendimento.adapter.primay.controller.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;

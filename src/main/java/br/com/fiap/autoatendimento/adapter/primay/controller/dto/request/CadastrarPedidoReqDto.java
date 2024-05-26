@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
+package br.com.fiap.autoatendimento.adapter.primay.controller.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotEmpty;
@@ -17,7 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CadastrarPedidoReqDto {
 
-    @Positive
+    @NotNull(message = "\"id_pedido\" não pode ser nulo")
+    @Positive(message = "\"id_pedido\" deve ser maior que zero")
     @JsonProperty("id_pedido")
     private Integer idPedido;
 

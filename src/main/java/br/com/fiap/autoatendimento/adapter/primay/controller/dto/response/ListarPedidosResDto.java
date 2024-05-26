@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
+package br.com.fiap.autoatendimento.adapter.primay.controller.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

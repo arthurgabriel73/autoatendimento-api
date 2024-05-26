@@ -1,7 +1,7 @@
 package br.com.fiap.autoatendimento.adapter.primay.controller;
 
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarClienteReqDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.BuscarClientePorCpfResDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.CadastrarClienteReqDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.BuscarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarClientePortIn;
 import br.com.fiap.autoatendimento.application.port.in.BuscarClientePorCpfPortIn;
 import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarClienteInputDto;

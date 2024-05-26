@@ -6,11 +6,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.AtualizarProdutoReqDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.AtualizarProdutoResDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarProdutoReqDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.CadastrarProdutoResDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.ListarProdutosResDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.AtualizarProdutoReqDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.CadastrarProdutoReqDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.AtualizarProdutoResDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.CadastrarProdutoResDto;
+import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.ListarProdutosResDto;
 import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;

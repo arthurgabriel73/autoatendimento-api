@@ -1,6 +1,7 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto;
+package br.com.fiap.autoatendimento.adapter.primay.controller.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarProdutoResDto {
+public class AtualizarProdutoResDto {
     
     @JsonProperty("id_produto")
     private String idProduto;
+
 }
+
