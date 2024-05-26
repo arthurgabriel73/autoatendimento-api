@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CadastrarPedidoInputDto {
+    private Integer idPedido;
     private String cpf;
     private List<Integer> produtos;
 }
