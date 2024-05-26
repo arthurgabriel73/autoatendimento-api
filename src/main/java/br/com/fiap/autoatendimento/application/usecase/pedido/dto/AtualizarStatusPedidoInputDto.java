@@ -1,18 +1,15 @@
-package br.com.fiap.autoatendimento.application.usecase.dto;
+package br.com.fiap.autoatendimento.application.usecase.pedido.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarPedidoInputDto {
+public class AtualizarStatusPedidoInputDto {
     private Integer idPedido;
-    private String cpf;
-    private List<Integer> produtos;
+    private Integer idStatusPedido;
 }

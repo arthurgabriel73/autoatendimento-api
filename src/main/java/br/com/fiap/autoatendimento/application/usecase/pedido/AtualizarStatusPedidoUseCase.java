@@ -1,11 +1,11 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.pedido;
 
 import br.com.fiap.autoatendimento.application.port.in.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.StatusPedidoPortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarStatusPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.PedidoNaoEncontradoException;
 import br.com.fiap.autoatendimento.application.usecase.exception.StatusPedidoInvalidoException;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.AtualizarStatusPedidoInputDto;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
 import br.com.fiap.autoatendimento.domain.model.pedido.StatusPedido;
 import jakarta.inject.Named;

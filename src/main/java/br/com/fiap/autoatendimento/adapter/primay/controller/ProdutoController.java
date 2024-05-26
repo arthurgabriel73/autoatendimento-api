@@ -15,11 +15,11 @@ import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
 import br.com.fiap.autoatendimento.application.port.in.RemoverProdutoPortIn;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoOutputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarProdutoOutputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.ListarProdutosOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.CadastrarProdutoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.CadastrarProdutoOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.ListarProdutosOutputDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

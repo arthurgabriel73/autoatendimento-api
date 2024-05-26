@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.produto;
 
 import br.com.fiap.autoatendimento.application.port.in.RemoverProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;

@@ -1,12 +1,12 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.produto;
 
 import br.com.fiap.autoatendimento.application.port.in.AtualizarProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.CategoriaPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.CategoriaNaoEncontradaException;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.domain.model.produto.Categoria;
 import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;

@@ -1,6 +1,6 @@
 package br.com.fiap.autoatendimento.application.port.in;
 
-import br.com.fiap.autoatendimento.application.usecase.dto.ListarProdutosOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.ListarProdutosOutputDto;
 
 public interface ListarProdutosPortIn {
     ListarProdutosOutputDto executar(

@@ -1,8 +1,8 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.cliente;
 
 import br.com.fiap.autoatendimento.application.port.in.BuscarClientePorCpfPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.BuscarClientePorCpfOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import jakarta.inject.Named;

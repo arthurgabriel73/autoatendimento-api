@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.application.usecase.dto;
+package br.com.fiap.autoatendimento.application.usecase.produto.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

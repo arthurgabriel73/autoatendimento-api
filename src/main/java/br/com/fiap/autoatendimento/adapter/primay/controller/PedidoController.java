@@ -7,10 +7,10 @@ import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.Listar
 import br.com.fiap.autoatendimento.application.port.in.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.ListarPedidosPortIn;
-import br.com.fiap.autoatendimento.application.usecase.dto.AtualizarStatusPedidoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoOutputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.ListarPedidosOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.AtualizarStatusPedidoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.ListarPedidosOutputDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

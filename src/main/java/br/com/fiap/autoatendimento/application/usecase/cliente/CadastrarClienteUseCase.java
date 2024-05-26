@@ -1,8 +1,8 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.cliente;
 
 import br.com.fiap.autoatendimento.application.port.in.CadastrarClientePortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarClienteInputDto;
+import br.com.fiap.autoatendimento.application.usecase.cliente.dto.CadastrarClienteInputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteJaCadastradoException;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cpf;

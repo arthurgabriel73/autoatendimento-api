@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.application.usecase.dto;
+package br.com.fiap.autoatendimento.application.usecase.pedido.dto;
 
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
 import lombok.AllArgsConstructor;

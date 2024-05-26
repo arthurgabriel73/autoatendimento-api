@@ -1,13 +1,13 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.pedido;
 
 import br.com.fiap.autoatendimento.application.port.in.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
 import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
+import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
 import br.com.fiap.autoatendimento.domain.model.pedido.StatusPedido;

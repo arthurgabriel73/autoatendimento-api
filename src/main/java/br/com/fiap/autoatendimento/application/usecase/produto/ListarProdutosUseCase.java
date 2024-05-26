@@ -1,10 +1,10 @@
-package br.com.fiap.autoatendimento.application.usecase;
+package br.com.fiap.autoatendimento.application.usecase.produto;
 
 import java.util.List;
 
 import br.com.fiap.autoatendimento.application.port.in.ListarProdutosPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
-import br.com.fiap.autoatendimento.application.usecase.dto.ListarProdutosOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.produto.dto.ListarProdutosOutputDto;
 import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;

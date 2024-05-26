@@ -4,8 +4,8 @@ import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.Cadastr
 import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.BuscarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.application.port.in.CadastrarClientePortIn;
 import br.com.fiap.autoatendimento.application.port.in.BuscarClientePorCpfPortIn;
-import br.com.fiap.autoatendimento.application.usecase.dto.CadastrarClienteInputDto;
-import br.com.fiap.autoatendimento.application.usecase.dto.BuscarClientePorCpfOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
+import br.com.fiap.autoatendimento.application.usecase.cliente.dto.CadastrarClienteInputDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

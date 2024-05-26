@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.application.usecase.dto;
+package br.com.fiap.autoatendimento.application.usecase.pedido.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AtualizarProdutoOutputDto {
-    
-    private Integer idProduto;
-
+public class CadastrarPedidoOutputDto {
+    private Integer idPedido;
 }
