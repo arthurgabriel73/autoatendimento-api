@@ -1,8 +1,10 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto.request;
+package br.com.fiap.autoatendimento.adapter.primary.controller.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +15,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarProdutoReqDto {
+public class AtualizarProdutoReqDto {
+
+    @NotNull(message = "\"id_produto\" não pode ser nulo")
+    @Positive(message = "\"id_produto\" deve ser maior que zero")
+    @JsonProperty("id_produto")
+    private Integer idProduto;
     
     @NotBlank
     @JsonProperty("nome")
@@ -38,5 +45,5 @@ public class CadastrarProdutoReqDto {
     @NotBlank
     @JsonProperty("categoria")
     private String categoria;
-    
 }
+

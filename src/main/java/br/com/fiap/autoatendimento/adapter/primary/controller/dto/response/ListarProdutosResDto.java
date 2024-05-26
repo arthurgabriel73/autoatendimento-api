@@ -1,4 +1,4 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller.dto.response;
+package br.com.fiap.autoatendimento.adapter.primary.controller.dto.response;
 
 import java.util.List;
 

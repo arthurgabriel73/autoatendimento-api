@@ -1,9 +1,9 @@
-package br.com.fiap.autoatendimento.adapter.primay.controller;
+package br.com.fiap.autoatendimento.adapter.primary.controller;
 
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.AtualizarStatusPedidoReqDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.request.CadastrarPedidoReqDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.CadastrarPedidoResDto;
-import br.com.fiap.autoatendimento.adapter.primay.controller.dto.response.ListarPedidosResDto;
+import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.AtualizarStatusPedidoReqDto;
+import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.CadastrarPedidoReqDto;
+import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.CadastrarPedidoResDto;
+import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.ListarPedidosResDto;
 import br.com.fiap.autoatendimento.application.port.in.pedido.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.pedido.ListarPedidosPortIn;
