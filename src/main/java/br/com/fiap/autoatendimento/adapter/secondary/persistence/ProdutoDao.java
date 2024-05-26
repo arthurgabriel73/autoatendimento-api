@@ -57,9 +57,10 @@ public class ProdutoDao implements ProdutoPortOut {
     }
 
     @Override
-    public List<Produto> listar() {
+    public List<Produto> listar(String categoria) {
 
-        List<ProdutoEntity> produtos = produtoRepository.findAll();
+        List<ProdutoEntity> produtos = produtoRepository.findByCategoriaNome(categoria);
+
 
         return produtos.stream()
                 .map(entity -> Produto.builder()

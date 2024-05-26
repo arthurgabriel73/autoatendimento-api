@@ -47,9 +47,9 @@ public class ProdutoController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ListarProdutosResDto listar() {
+    public ListarProdutosResDto listar(@RequestParam(name = "categoria", required = false) String categoria) {
 
-        final ListarProdutosOutputDto output = listarProdutosPortIn.executar();
+        final ListarProdutosOutputDto output = listarProdutosPortIn.executar(categoria);
 
         return ListarProdutosResDto.builder()
                 .produtos(output.getProdutos().stream()

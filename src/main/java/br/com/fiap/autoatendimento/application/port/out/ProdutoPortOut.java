@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface ProdutoPortOut {
     Integer salvar(Produto produto);
     Optional<Produto> buscarPorIdProduto(Integer idProduto);
-    List<Produto> listar();
+    List<Produto> listar(String categoria);
 }
