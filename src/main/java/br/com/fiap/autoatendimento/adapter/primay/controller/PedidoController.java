@@ -37,6 +37,7 @@ public class PedidoController {
     public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
+                .idPedido(request.getIdPedido())
                 .cpf(request.getCpf())
                 .produtos(request.getProdutos())
                 .build();

@@ -50,6 +50,7 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
         }
 
         final Pedido pedido = Pedido.builder()
+                .idPedido(input.getIdPedido())
                 .cliente(cliente)
                 .produtos(produtos)
                 .status(StatusPedido.builder()
