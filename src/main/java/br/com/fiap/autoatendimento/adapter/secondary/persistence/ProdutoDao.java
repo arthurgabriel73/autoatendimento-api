@@ -79,4 +79,25 @@ public class ProdutoDao implements ProdutoPortOut {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Integer atualizar(Produto produto) {
+        
+        final ProdutoEntity entity = ProdutoEntity.builder()
+                .idProduto(produto.getIdProduto())
+                .nome(produto.getNome())
+                .descricao(produto.getDescricao())
+                .preco(produto.getPreco())
+                .imagem(produto.getImagem())
+                .ativo(produto.getAtivo())
+                .categoria(
+                    CategoriaEntity.builder()
+                        .nome(produto.getCategoria().getNome())
+                        .idCategoria(produto.getCategoria().getIdCategoria())
+                        .build()
+                    )
+                .build();
+        
+        return produtoRepository.save(entity).getIdProduto();
+    }
+
 }

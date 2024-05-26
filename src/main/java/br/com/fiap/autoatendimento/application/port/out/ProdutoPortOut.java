@@ -9,4 +9,6 @@ public interface ProdutoPortOut {
     Integer salvar(Produto produto);
     Optional<Produto> buscarPorIdProduto(Integer idProduto);
     List<Produto> listar(String categoria);
+    Integer atualizar(Produto produto);
+    
 }
