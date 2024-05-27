@@ -47,6 +47,21 @@ CREATE TABLE pedido_produto(
     CONSTRAINT fk_pedidoproduto_produto FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
 );
 
+CREATE TABLE status_pagamento(
+    id_status_pagamento SERIAL NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    PRIMARY KEY(id_status_pagamento)
+);
+
+CREATE TABLE pagamento(
+    id_pagamento SERIAL NOT NULL,
+    id_pedido INTEGER NOT NULL,
+    id_status_pagamento INTEGER NOT NULL,
+    PRIMARY KEY(id_pagamento),
+    CONSTRAINT fk_pagamento_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
+    CONSTRAINT fk_pagamento_statuspagamento FOREIGN KEY (id_status_pagamento) REFERENCES status_pagamento(id_status_pagamento)
+);
+
 INSERT INTO categoria (id_categoria, nome) VALUES (1, 'Lanche');
 INSERT INTO categoria (id_categoria, nome) VALUES (2, 'Acompanhamento');
 INSERT INTO categoria (id_categoria, nome) VALUES (3, 'Bebida');
@@ -57,6 +72,11 @@ INSERT INTO status_pedido (id_status_pedido, nome) VALUES (2, 'EM PREPARACAO');
 INSERT INTO status_pedido (id_status_pedido, nome) VALUES (3, 'PRONTO');
 INSERT INTO status_pedido (id_status_pedido, nome) VALUES (4, 'FINALIZADO');
 INSERT INTO status_pedido (id_status_pedido, nome) VALUES (5, 'CANCELADO');
+
+INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (1, 'PENDENTE');
+INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (2, 'APROVADO');
+INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (3, 'REJEITADO');
+INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (4, 'CANCELADO');
 
 -- massa para testes
 INSERT INTO produto (id_produto, nome, descricao, preco, imagem, ativo, id_categoria) VALUES (1, 'Big Mac', 'Lanche de carne com picles', 19.99, 'big_mac.jpg', true, 1);

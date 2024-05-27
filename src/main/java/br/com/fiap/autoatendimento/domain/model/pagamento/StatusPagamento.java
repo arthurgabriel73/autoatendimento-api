@@ -1,8 +1,13 @@
 package br.com.fiap.autoatendimento.domain.model.pagamento;
 
-public enum StatusPagamento {
-    PENDENTE,
-    APROVADO,
-    REJEITADO,
-    CANCELADO
+import lombok.Builder;
+import lombok.Value;
+
+@Value
+@Builder
+public class StatusPagamento {
+    
+    Integer idStatusPagamento;
+    String nome;
+    
 }
