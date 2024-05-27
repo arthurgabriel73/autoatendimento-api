@@ -24,6 +24,7 @@ public class CriarPagamentoUseCase implements CriarPagamentoPortIn {
     @Transactional
     @Override
     public CriarPagamentoOutputDto executar(CriarPagamentoInputDto input) {
+        
         final Pedido pedido = pedidoPortOut.buscarPorIdPedido(input.getIdPedido())
                 .orElseThrow(() -> new PedidoNaoEncontradoException("Pedido não encontrado."));
 
