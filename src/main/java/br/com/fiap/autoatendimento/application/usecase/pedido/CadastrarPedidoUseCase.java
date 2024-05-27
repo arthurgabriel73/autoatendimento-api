@@ -2,6 +2,7 @@ package br.com.fiap.autoatendimento.application.usecase.pedido;
 
 import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
+import br.com.fiap.autoatendimento.application.port.out.PagamentoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;
@@ -9,6 +10,8 @@ import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncon
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
+import br.com.fiap.autoatendimento.domain.model.pagamento.Pagamento;
+import br.com.fiap.autoatendimento.domain.model.pagamento.StatusPagamento;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
 import br.com.fiap.autoatendimento.domain.model.pedido.StatusPedido;
 import br.com.fiap.autoatendimento.domain.model.produto.Produto;
@@ -25,9 +28,11 @@ import java.util.Objects;
 public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
 
     private final static Integer STATUS_RECEBIDO = 1;
+    private final static Integer STATUS_PENDENTE = 1;
     private final ClientePortOut clientePortOut;
     private final ProdutoPortOut produtoPortOut;
     private final PedidoPortOut pedidoPortOut;
+    private final PagamentoPortOut pagamentoPortOut;
 
     @Transactional
     @Override
@@ -58,7 +63,15 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
                         .build())
                 .build();
 
+        final Pagamento pagamento = Pagamento.builder()
+            .status(StatusPagamento.builder()
+                    .idStatusPagamento(STATUS_PENDENTE)
+                    .build())
+            .pedido(pedido)
+            .build();
+
         final Integer idPedido = pedidoPortOut.salvar(pedido);
+        pagamentoPortOut.salvar(pagamento);
 
         return CadastrarPedidoOutputDto.builder()
                 .idPedido(idPedido)
