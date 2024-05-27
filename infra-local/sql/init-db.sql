@@ -55,7 +55,7 @@ CREATE TABLE status_pagamento(
 
 CREATE TABLE pagamento(
     id_pagamento SERIAL NOT NULL,
-    id_pedido INTEGER NOT NULL UNIQUE,
+    id_pedido INTEGER NOT NULL,
     id_status_pagamento INTEGER NOT NULL,
     PRIMARY KEY(id_pagamento),
     CONSTRAINT fk_pagamento_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
