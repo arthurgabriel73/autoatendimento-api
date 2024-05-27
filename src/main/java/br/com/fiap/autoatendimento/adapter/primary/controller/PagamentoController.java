@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.BuscarPorIdPedidoResDto;
-import br.com.fiap.autoatendimento.application.port.in.pagamento.BuscarPorIdPedidoPortIn;
-import br.com.fiap.autoatendimento.application.usecase.pagamento.dto.BuscarPorIdPedidoOutputDto;
+import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.ConsultarStatusPagamentoDoPedidoResDto;
+import br.com.fiap.autoatendimento.application.port.in.pagamento.ConsultarStatusPagamentoDoPedidoPortIn;
+import br.com.fiap.autoatendimento.application.usecase.pagamento.dto.ConsultarStatusPagamentoDoPedidoOutputDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,15 +20,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PagamentoController {
 
-    private final BuscarPorIdPedidoPortIn buscarPorIdPedidoPortIn;
+    private final ConsultarStatusPagamentoDoPedidoPortIn consultarStatusPagamentoDoPedidoPortIn;
 
     @GetMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public BuscarPorIdPedidoResDto buscarPorIdPedido(@PathVariable("idPedido") Integer idPedido) {
+    public ConsultarStatusPagamentoDoPedidoResDto consultarStatusPagamentoDoPedido(@PathVariable("idPedido") Integer idPedido) {
         
-        final BuscarPorIdPedidoOutputDto output = buscarPorIdPedidoPortIn.executar(idPedido);
+        final ConsultarStatusPagamentoDoPedidoOutputDto output = consultarStatusPagamentoDoPedidoPortIn.executar(idPedido);
 
-        return BuscarPorIdPedidoResDto.builder()
+        return ConsultarStatusPagamentoDoPedidoResDto.builder()
                 .idPagamento(output.getIdPagamento())
                 .idPedido(output.getIdPedido())
                 .statusPagamento(output.getStatusPagamento())

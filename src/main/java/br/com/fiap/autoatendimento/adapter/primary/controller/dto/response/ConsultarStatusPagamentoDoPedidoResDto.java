@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuscarPorIdPedidoResDto {
+public class ConsultarStatusPagamentoDoPedidoResDto {
     
     @JsonProperty("id_pagamento")
     private Integer idPagamento;
