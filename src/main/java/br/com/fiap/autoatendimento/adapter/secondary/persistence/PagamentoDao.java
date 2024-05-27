@@ -53,4 +53,20 @@ public class PagamentoDao implements PagamentoPortOut {
                 
         }
     
+        @Override
+        public void atualizar(Pagamento pagamento) {
+
+                final PagamentoEntity entity = PagamentoEntity.builder()
+                        .idPagamento(pagamento.getId())
+                        .statusPagamento(StatusPagamentoEntity.builder()
+                                .idStatusPagamento(pagamento.getStatus().getIdStatusPagamento())
+                                .build())
+                        .pedido(PedidoEntity.builder()
+                                .idPedido(pagamento.getPedido().getIdPedido())
+                                .build())
+                        .build();
+                
+                pagamentoRepository.save(entity);
+
+        }
 }

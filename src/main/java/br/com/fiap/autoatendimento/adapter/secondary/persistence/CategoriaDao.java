@@ -17,12 +17,11 @@ public class CategoriaDao implements CategoriaPortOut {
     @Override
     public Optional<Categoria> buscarPorNome(String nome) {
 
-        return categoriaRepository.findByNome(nome).map(entity ->
-                Categoria.builder()
+        return categoriaRepository.findByNome(nome)
+                .map(entity -> Categoria.builder()
                         .idCategoria(entity.getIdCategoria())
                         .nome(entity.getNome())
                         .build());
-
     }
 
 }

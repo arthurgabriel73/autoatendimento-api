@@ -108,4 +108,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
     }
 
+    @ExceptionHandler(StatusPagamentoNaoEncontradoException.class)
+    public ResponseEntity<Object> handleStatusPagamentoNaoEncontradoException(StatusPagamentoNaoEncontradoException exception,
+                                                                      WebRequest request) {
+
+        final ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
+    }
+
 }

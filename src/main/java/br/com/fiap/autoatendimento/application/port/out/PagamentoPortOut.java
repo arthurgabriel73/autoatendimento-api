@@ -7,4 +7,5 @@ import br.com.fiap.autoatendimento.domain.model.pagamento.Pagamento;
 public interface PagamentoPortOut {
     Integer salvar(Pagamento pagamento);
     Optional<Pagamento> buscarPorIdPedido(Integer idPedido);
+    void atualizar(Pagamento pagamento);
 }
