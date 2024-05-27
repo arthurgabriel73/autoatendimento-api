@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class CadastrarPedidoReqDto {
 
-    @NotNull(message = "\"id_pedido\" não pode ser nulo")
     @Positive(message = "\"id_pedido\" deve ser maior que zero")
     @JsonProperty("id_pedido")
     private Integer idPedido;
