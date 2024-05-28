@@ -16,6 +16,7 @@ import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -42,6 +43,10 @@ public class PedidoPersistenceAdapter implements PedidoPortOut {
                 .statusPedido(StatusPedidoEntity.builder()
                         .idStatusPedido(pedido.getStatus().getIdStatusPedido())
                         .build())
+                .dataHoraInicio(Timestamp.valueOf(pedido.getDataHoraInicio()))
+                .dataHoraFim(
+                        Objects.isNull(pedido.getDataHoraFim()) ? null : Timestamp.valueOf(pedido.getDataHoraFim())
+                )
                 .build();
 
         return pedidoRepository.save(entity).getIdPedido();
@@ -89,6 +94,8 @@ public class PedidoPersistenceAdapter implements PedidoPortOut {
                         .idStatusPedido(entity.getStatusPedido().getIdStatusPedido())
                         .nome(entity.getStatusPedido().getNome())
                         .build())
+                .dataHoraInicio(entity.getDataHoraInicio().toLocalDateTime())
+                .dataHoraFim(Objects.isNull(entity.getDataHoraFim()) ? null : entity.getDataHoraFim().toLocalDateTime())
                 .build();
     }
 

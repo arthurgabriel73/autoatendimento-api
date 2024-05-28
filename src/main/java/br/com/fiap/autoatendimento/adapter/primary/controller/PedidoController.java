@@ -106,6 +106,7 @@ public class PedidoController {
                                         .nome(pedido.getStatus().getNome())
                                         .build())
                                 .valorTotal(DECIMAL_FORMAT_PRECO.format(pedido.calcularValorTotal()))
+                                .tempoEspera(pedido.calcularTempoEspera())
                                 .build())
                         .collect(Collectors.toList()))
                 .build();

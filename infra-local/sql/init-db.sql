@@ -33,6 +33,8 @@ CREATE TABLE pedido(
     id_pedido SERIAL NOT NULL,
     cpf VARCHAR(11),
     id_status_pedido INTEGER NOT NULL,
+    data_hora_inicio TIMESTAMP NOT NULL,
+    data_hora_fim TIMESTAMP,
     PRIMARY KEY(id_pedido),
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (cpf) REFERENCES cliente(cpf),
     CONSTRAINT fk_pedido_statuspedido FOREIGN KEY (id_status_pedido) REFERENCES status_pedido(id_status_pedido)

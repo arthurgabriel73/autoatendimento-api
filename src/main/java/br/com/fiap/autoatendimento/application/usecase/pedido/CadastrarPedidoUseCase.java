@@ -23,6 +23,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.image.BufferedImage;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -71,6 +72,7 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
                 .status(StatusPedido.builder()
                         .idStatusPedido(STATUS_RECEBIDO)
                         .build())
+                .dataHoraInicio(LocalDateTime.now())
                 .build();
 
         final Integer idPedido = pedidoPortOut.salvar(pedido);

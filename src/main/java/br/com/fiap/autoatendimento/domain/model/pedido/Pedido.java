@@ -1,14 +1,17 @@
 package br.com.fiap.autoatendimento.domain.model.pedido;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.fiap.autoatendimento.domain.model.cliente.Cliente;
 import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Data
 @Builder
@@ -20,6 +23,8 @@ public class Pedido {
 	private Cliente cliente;
 	private List<Produto> produtos;
 	private StatusPedido status;
+	private LocalDateTime dataHoraInicio;
+	private LocalDateTime dataHoraFim;
 
 	public void atualizarStatus(StatusPedido status) {
 		this.status = status;
@@ -48,5 +53,14 @@ public class Pedido {
 			.mapToDouble(Produto::getPreco)
 			.sum();
 	}
-  
+
+	public String calcularTempoEspera() {
+
+		final Duration duration = Objects.isNull(dataHoraFim) ?
+				Duration.between(dataHoraInicio, LocalDateTime.now()) : Duration.between(dataHoraInicio, dataHoraFim);
+		final Long minutes = duration.toMinutes();
+
+		return minutes.toString() + " minutos";
+	}
+
 }

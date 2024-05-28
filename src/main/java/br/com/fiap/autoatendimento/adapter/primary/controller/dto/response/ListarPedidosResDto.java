@@ -38,6 +38,9 @@ public class ListarPedidosResDto {
         @JsonProperty("valor_total")
         private String valorTotal;
 
+        @JsonProperty("tempo_espera")
+        private String tempoEspera;
+
     }
 
     @Data

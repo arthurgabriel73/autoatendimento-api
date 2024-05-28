@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,12 @@ public class PedidoEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_status_pedido")
     private StatusPedidoEntity statusPedido;
+
+    @Column(name = "data_hora_inicio")
+    private Timestamp dataHoraInicio;
+
+    @Column(name = "data_hora_fim")
+    private Timestamp dataHoraFim;
 
     @ManyToMany
     @JoinTable(name = "pedido_produto",

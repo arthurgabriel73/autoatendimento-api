@@ -12,6 +12,8 @@ import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Named
 @RequiredArgsConstructor
 public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoPortIn {
@@ -28,6 +30,11 @@ public class AtualizarStatusPedidoUseCase implements AtualizarStatusPedidoPortIn
 
         final StatusPedido statusPedido = statusPedidoPortOut.buscarPorIdStatusPedido(input.getIdStatusPedido())
                 .orElseThrow(() -> new StatusPedidoInvalidoException("Status do pedido informado invalido."));
+
+        if (statusPedido.getNome().equalsIgnoreCase("FINALIZADO") ||
+                statusPedido.getNome().equalsIgnoreCase("CANCELADO")) {
+            pedido.setDataHoraFim(LocalDateTime.now());
+        }
 
         pedido.setStatus(statusPedido);
 
