@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConfirmarPagamentoDoPedidoInputDto {
+public class ConfirmarPagamentoPedidoInputDto {
     private Integer idPedido;
     private String statusPagamento;
 }

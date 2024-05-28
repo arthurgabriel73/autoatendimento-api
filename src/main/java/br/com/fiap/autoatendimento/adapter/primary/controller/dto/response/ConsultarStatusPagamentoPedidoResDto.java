@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConsultarStatusPagamentoDoPedidoResDto {
+public class ConsultarStatusPagamentoPedidoResDto {
     
     @JsonProperty("id_pagamento")
     private Integer idPagamento;
