@@ -34,6 +34,7 @@ public class PedidoController {
     private final ListarPedidosPortIn listarPedidosPortIn;
 
     @PostMapping(produces = IMAGE_PNG_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public BufferedImage cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
