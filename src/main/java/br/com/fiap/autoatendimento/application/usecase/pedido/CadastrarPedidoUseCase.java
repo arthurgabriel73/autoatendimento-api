@@ -67,23 +67,31 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
                         .build())
                 .build();
 
-        final Pagamento pagamento = Pagamento.builder()
-            .status(StatusPagamento.builder()
-                    .idStatusPagamento(STATUS_PENDENTE)
-                    .build())
-            .pedido(pedido)
-            .build();
-
         final Integer idPedido = pedidoPortOut.salvar(pedido);
-        pagamentoPortOut.salvar(pagamento);
+        pagamentoPortOut.salvar(Pagamento.builder()
+                .pedido(Pedido.builder()
+                        .idPedido(idPedido)
+                        .build())
+                .status(StatusPagamento.builder()
+                        .idStatusPagamento(STATUS_PENDENTE)
+                        .build())
+                .build());
 
         try {
-            BufferedImage qrCode = QRCodePortOut.gerar(pedido);
+            BufferedImage qrCode = QRCodePortOut.gerar(Pedido.builder()
+                    .idPedido(idPedido)
+                    .cliente(cliente)
+                    .produtos(produtos)
+                    .status(StatusPedido.builder()
+                            .idStatusPedido(STATUS_RECEBIDO)
+                            .build())
+                    .build());
             return CadastrarPedidoOutputDto.builder()
                     .idPedido(idPedido)
                     .qrCode(qrCode)
                     .build();
         } catch (Exception e) {
+            System.out.println(e);
             throw new ErroAoGerarQRCodeException("Erro ao gerar o QRCode.");
         }
         

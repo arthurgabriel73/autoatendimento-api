@@ -53,6 +53,7 @@ public class ProdutoDao implements ProdutoPortOut {
                                 .nome(entity.getCategoria().getNome())
                                 .build())
                         .imagem(entity.getImagem())
+                        .preco(entity.getPreco())
                         .build());
     }
 

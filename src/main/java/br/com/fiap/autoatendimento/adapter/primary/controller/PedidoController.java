@@ -2,7 +2,6 @@ package br.com.fiap.autoatendimento.adapter.primary.controller;
 
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.AtualizarStatusPedidoReqDto;
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.CadastrarPedidoReqDto;
-import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.ListarPedidosResDto;
 import br.com.fiap.autoatendimento.application.port.in.pedido.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
@@ -17,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -34,7 +34,7 @@ public class PedidoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
+    public BufferedImage cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
                 .idPedido(request.getIdPedido())
@@ -44,7 +44,7 @@ public class PedidoController {
 
         final CadastrarPedidoOutputDto output = cadastrarPedidoPortIn.executar(input);
 
-        return CadastrarPedidoResDto.builder().idPedido(output.getIdPedido().toString()).build();
+        return output.getQrCode();
     }
 
     @PatchMapping("/{idPedido}/status")

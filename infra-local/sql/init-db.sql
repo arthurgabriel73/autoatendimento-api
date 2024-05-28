@@ -84,11 +84,3 @@ INSERT INTO produto (id_produto, nome, descricao, preco, imagem, ativo, id_categ
 
 INSERT INTO cliente (cpf, nome, email) VALUES ('27528461008', 'Fulano', 'fulano@fiap.com.br');
 INSERT INTO cliente (cpf, nome, email) VALUES ('40466341032', 'Beltrano', 'beltrano@fiap.com.br');
-
-INSERT INTO pedido (id_pedido, cpf, id_status_pedido) VALUES (1, '27528461008', 1);
-INSERT INTO pedido (id_pedido, cpf, id_status_pedido) VALUES (2, '40466341032', 2);
-
-INSERT INTO pedido_produto(id_pedido, id_produto) VALUES (1, 1);
-INSERT INTO pedido_produto(id_pedido, id_produto) VALUES (1, 2);
-INSERT INTO pedido_produto(id_pedido, id_produto) VALUES (2, 1);
-INSERT INTO pedido_produto(id_pedido, id_produto) VALUES (2, 2);

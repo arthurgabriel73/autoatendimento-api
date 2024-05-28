@@ -9,14 +9,14 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import br.com.fiap.autoatendimento.application.port.out.QRCodeServicePortOut;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
+import jakarta.inject.Named;
+import lombok.RequiredArgsConstructor;
 
+@Named
+@RequiredArgsConstructor
 public class QRCodeServiceGateway implements QRCodeServicePortOut {
 
     private final QRCodeGenerator qrCodeGenerator;
-
-    public QRCodeServiceGateway(QRCodeGenerator qrCodeGenerator) {
-        this.qrCodeGenerator = qrCodeGenerator;
-    }
 
     @Override
     public BufferedImage gerar(Pedido pedido) throws Exception {

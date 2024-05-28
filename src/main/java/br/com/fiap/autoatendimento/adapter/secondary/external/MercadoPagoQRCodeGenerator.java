@@ -10,7 +10,11 @@ import org.springframework.web.client.RestTemplate;
 import br.com.fiap.autoatendimento.adapter.secondary.external.dto.request.DadosPedidoPagamentoReqDto;
 import br.com.fiap.autoatendimento.adapter.secondary.external.dto.response.NotificacaoDePagamentoResDto;
 import br.com.fiap.autoatendimento.domain.model.pedido.Pedido;
+import jakarta.inject.Named;
+import lombok.RequiredArgsConstructor;
 
+@Named
+@RequiredArgsConstructor
 public class MercadoPagoQRCodeGenerator implements QRCodeGenerator {
 
     @Value("${mercado.pago.access.token}")
@@ -28,6 +32,9 @@ public class MercadoPagoQRCodeGenerator implements QRCodeGenerator {
     @Value("${mercado.pago.api.caixa.id.externo}")
     private String API_CAIXA_ID_EXTERNO;
 
+    @Value("${server.notification.url}")
+    private String SERVER_NOTIFICATION_URL;
+
     @Override
     public String gerarQRCodeString(Pedido pedido) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -35,7 +42,7 @@ public class MercadoPagoQRCodeGenerator implements QRCodeGenerator {
         DadosPedidoPagamentoReqDto dadosPedido = DadosPedidoPagamentoReqDto.builder()
                 .externalReference(pedido.getIdPedido().toString())
                 .title("Pagamento do pedido " + pedido.getIdPedido())
-                .notificationUrl("http://localhost:8080/pagamento/confirmacao")
+                .notificationUrl(SERVER_NOTIFICATION_URL + "/pagamentos/pedido/" + pedido.getIdPedido())
                 .totalAmount(pedido.calcularValorTotal())
                 .description("Pagamento do pedido " + pedido.getIdPedido())
                 .build();
