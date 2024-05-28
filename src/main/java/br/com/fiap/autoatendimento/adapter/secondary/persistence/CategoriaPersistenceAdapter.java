@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Named
 @RequiredArgsConstructor
-public class CategoriaDao implements CategoriaPortOut {
+public class CategoriaPersistenceAdapter implements CategoriaPortOut {
 
     private final CategoriaRepository categoriaRepository;
     

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
-public class StatusPagamentoDao implements StatusPagamentoPortOut {
+public class StatusPagamentoPersistenceAdapter implements StatusPagamentoPortOut {
 
     private final StatusPagamentoRepository statusPagamentoRepository;
 

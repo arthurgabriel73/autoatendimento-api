@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Named
 @RequiredArgsConstructor
-public class ProdutoDao implements ProdutoPortOut {
+public class ProdutoPersistenceAdapter implements ProdutoPortOut {
 
     private final ProdutoRepository produtoRepository;
 

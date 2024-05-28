@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
-public class StatusPedidoDao implements StatusPedidoPortOut {
+public class StatusPedidoPersistenceAdapter implements StatusPedidoPortOut {
 
     private final StatusPedidoRepository statusPedidoRepository;
 

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
-public class PagamentoDao implements PagamentoPortOut {
+public class PagamentoPersistenceAdapter implements PagamentoPortOut {
 
     private final PagamentoRepository pagamentoRepository;
 
