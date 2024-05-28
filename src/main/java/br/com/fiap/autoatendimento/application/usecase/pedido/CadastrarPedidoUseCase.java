@@ -8,6 +8,7 @@ import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;
 import br.com.fiap.autoatendimento.application.usecase.exception.ErroAoGerarQRCodeException;
+import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoInativoException;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;
@@ -54,12 +55,17 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
         final List<Produto> produtos = new ArrayList<>();
 
         for (Integer idProduto : input.getProdutos()) {
-            produtos.add(produtoPortOut.buscarPorIdProduto(idProduto)
-                    .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado nao encontrado.")));
+            final Produto produto = produtoPortOut.buscarPorIdProduto(idProduto)
+                    .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado nao encontrado."));
+
+            if (!produto.getAtivo()) {
+                throw new ProdutoInativoException("Produto inativo nao pode ser solicitado.");
+            }
+
+            produtos.add(produto);
         }
 
         final Pedido pedido = Pedido.builder()
-                .idPedido(input.getIdPedido())
                 .cliente(cliente)
                 .produtos(produtos)
                 .status(StatusPedido.builder()
