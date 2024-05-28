@@ -8,10 +8,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class NotificacaoDePagamentoResDto {
     
-    private String inStoreOrderId;
-    private String qrData;
+    private String in_store_order_id;
+    private String qr_data;
+
+    public NotificacaoDePagamentoResDto(String in_store_order_id, String qr_data) {
+        this.in_store_order_id = in_store_order_id;
+        this.qr_data = qr_data;
+    }
     
 }

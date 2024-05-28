@@ -69,12 +69,12 @@ public class MercadoPagoQRCodeGenerator implements QRCodeGenerator {
                 .description("Pagamento do pedido " + pedido.getIdPedido())
                 .items(items)
                 .build();
-
+        System.out.println(dadosPedido.toJson());
         HttpEntity<String> httpEntity = new HttpEntity<>(dadosPedido.toJson(), gerarHeaders());
         ResponseEntity<NotificacaoDePagamentoResDto> notificacaoDePagamento = restTemplate
                 .postForEntity(url, httpEntity,NotificacaoDePagamentoResDto.class);
         
-        String qrCode = notificacaoDePagamento.getBody().getQrData();
+        String qrCode = notificacaoDePagamento.getBody().getQr_data();
 
         return qrCode;
 
