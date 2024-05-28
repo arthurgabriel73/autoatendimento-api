@@ -1,6 +1,5 @@
 package br.com.fiap.autoatendimento.adapter.secondary.external;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,9 +53,9 @@ public class MercadoPagoQRCodeGenerator implements QRCodeGenerator {
                     .description("Item lanchonete")
                     .unitMeasure("unit")
                     .category(produto.getCategoria().getNome())
-                    .unitPrice(new BigDecimal(produto.getPreco()))
-                    .quantity(1L)
-                    .totalAmount(new BigDecimal(produto.getPreco()))
+                    .unitPrice(produto.getPreco())
+                    .quantity(1)
+                    .totalAmount(produto.getPreco())
                     .build();
             items.add(item);
         }

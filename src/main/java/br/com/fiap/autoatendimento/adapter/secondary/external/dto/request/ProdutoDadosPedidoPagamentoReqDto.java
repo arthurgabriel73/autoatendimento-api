@@ -1,7 +1,5 @@
 package br.com.fiap.autoatendimento.adapter.secondary.external.dto.request;
 
-import java.math.BigDecimal;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -28,15 +26,15 @@ public class ProdutoDadosPedidoPagamentoReqDto {
     private String description;
 
     @JsonProperty("unit_price")
-    private BigDecimal unitPrice;
+    private Double unitPrice;
 
     @JsonProperty("quantity")
-    private Long quantity;
+    private Integer quantity;
 
     @JsonProperty("unit_measure")
     private String unitMeasure;
 
     @JsonProperty("total_amount")
-    private BigDecimal totalAmount;
+    private Double totalAmount;
 
 }
