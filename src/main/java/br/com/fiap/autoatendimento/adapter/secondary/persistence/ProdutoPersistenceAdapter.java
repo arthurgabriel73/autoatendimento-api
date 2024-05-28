@@ -100,10 +100,5 @@ public class ProdutoPersistenceAdapter implements ProdutoPortOut {
         
         return produtoRepository.save(entity).getIdProduto();
     }
-
-    @Override
-    public void remover(Integer idProduto) {
-        produtoRepository.deleteById(idProduto);
-    }
     
 }
