@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarPedidoResDto {
-
-    @JsonProperty("id_pedido")
-    private String idPedido;
-
+public class CriarPagamentoResDto {
+    
+    @JsonProperty("id_pagamento")
+    private String idPagamento;
 }

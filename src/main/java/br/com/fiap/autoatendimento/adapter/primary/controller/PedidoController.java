@@ -2,7 +2,6 @@ package br.com.fiap.autoatendimento.adapter.primary.controller;
 
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.AtualizarStatusPedidoReqDto;
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.request.CadastrarPedidoReqDto;
-import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.adapter.primary.controller.dto.response.ListarPedidosResDto;
 import br.com.fiap.autoatendimento.application.port.in.pedido.AtualizarStatusPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
@@ -14,12 +13,18 @@ import br.com.fiap.autoatendimento.application.usecase.pedido.dto.ListarPedidosO
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.springframework.http.MediaType;
+import javax.imageio.ImageIO;
+import java.io.IOException;
+
 
 @RestController
 @RequestMapping("/pedidos")
@@ -27,14 +32,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PedidoController {
 
+    public static final String IMAGE_PNG_VALUE = "image/png";
     public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
     private final CadastrarPedidoPortIn cadastrarPedidoPortIn;
     private final AtualizarStatusPedidoPortIn atualizarStatusPedidoPortIn;
     private final ListarPedidosPortIn listarPedidosPortIn;
 
-    @PostMapping
+    @PostMapping(produces = IMAGE_PNG_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
+    public ResponseEntity<byte[]> cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
                 .cpf(request.getCpf())
@@ -43,7 +49,13 @@ public class PedidoController {
 
         final CadastrarPedidoOutputDto output = cadastrarPedidoPortIn.executar(input);
 
-        return CadastrarPedidoResDto.builder().idPedido(output.getIdPedido().toString()).build();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(output.getQrCode(), "png", baos);
+        byte[] imageBytes = baos.toByteArray();
+        
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .contentType(MediaType.IMAGE_PNG)
+        .body(imageBytes);
     }
 
     @PatchMapping("/{idPedido}/status")

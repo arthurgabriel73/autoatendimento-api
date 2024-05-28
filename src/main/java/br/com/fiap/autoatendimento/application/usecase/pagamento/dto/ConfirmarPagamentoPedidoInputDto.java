@@ -1,6 +1,4 @@
-package br.com.fiap.autoatendimento.application.usecase.pedido.dto;
-
-import java.awt.image.BufferedImage;
+package br.com.fiap.autoatendimento.application.usecase.pagamento.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CadastrarPedidoOutputDto {
+public class ConfirmarPagamentoPedidoInputDto {
     private Integer idPedido;
-    private BufferedImage qrCode;
+    private String statusPagamento;
 }

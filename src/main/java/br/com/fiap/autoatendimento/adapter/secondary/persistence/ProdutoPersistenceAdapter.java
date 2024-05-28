@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Named
 @RequiredArgsConstructor
-public class ProdutoDao implements ProdutoPortOut {
+public class ProdutoPersistenceAdapter implements ProdutoPortOut {
 
     private final ProdutoRepository produtoRepository;
 
@@ -53,6 +53,7 @@ public class ProdutoDao implements ProdutoPortOut {
                                 .nome(entity.getCategoria().getNome())
                                 .build())
                         .imagem(entity.getImagem())
+                        .preco(entity.getPreco())
                         .build());
     }
 

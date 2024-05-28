@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Named
 @RequiredArgsConstructor
-public class ClienteDao implements ClientePortOut {
+public class ClientePersistenceAdapter implements ClientePortOut {
 
     private final ClienteRepository clienteRepository;
 

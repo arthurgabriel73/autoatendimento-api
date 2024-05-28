@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Named
 @RequiredArgsConstructor
-public class PedidoDao implements PedidoPortOut {
+public class PedidoPersistenceAdapter implements PedidoPortOut {
 
     private final PedidoRepository pedidoRepository;
 

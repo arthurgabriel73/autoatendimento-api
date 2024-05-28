@@ -22,9 +22,8 @@ public class CadastrarProdutoUseCase implements CadastrarProdutoPortIn {
     @Transactional
     @Override
     public CadastrarProdutoOutputDto executar(CadastrarProdutoInputDto input) {
-        final Integer idCategoria = categoriaPortOut.buscarPorNome(input.getCategoria())
-                .orElseThrow(() -> new CategoriaNaoEncontradaException("Categoria não encontrada."))
-                .getIdCategoria();
+        final Categoria categoria = categoriaPortOut.buscarPorNome(input.getCategoria())
+                .orElseThrow(() -> new CategoriaNaoEncontradaException("Categoria não encontrada."));
 
         final Produto produto = Produto.builder()
                 .nome(input.getNome())
@@ -32,10 +31,7 @@ public class CadastrarProdutoUseCase implements CadastrarProdutoPortIn {
                 .preco(input.getPreco())
                 .imagem(input.getImagem())
                 .ativo(input.getAtivo())
-                .categoria(Categoria.builder()
-                        .nome(input.getCategoria())
-                        .idCategoria(idCategoria)
-                        .build())
+                .categoria(categoria)
                 .build();
         
         final Integer idProduto = produtoPortOut.salvar(produto);
