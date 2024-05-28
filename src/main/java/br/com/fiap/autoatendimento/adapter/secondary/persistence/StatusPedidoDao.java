@@ -6,7 +6,9 @@ import br.com.fiap.autoatendimento.domain.model.pedido.StatusPedido;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Named
 @RequiredArgsConstructor
@@ -23,4 +25,17 @@ public class StatusPedidoDao implements StatusPedidoPortOut {
                         .nome(entity.getNome())
                         .build());
     }
+
+    @Override
+    public List<StatusPedido> listar() {
+
+        return statusPedidoRepository.findAll().stream().map(
+                entity -> StatusPedido.builder()
+                        .idStatusPedido(entity.getIdStatusPedido())
+                        .nome(entity.getNome())
+                        .build()
+                )
+                .collect(Collectors.toList());
+    }
+
 }
