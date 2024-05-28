@@ -2,8 +2,6 @@ package br.com.fiap.autoatendimento.domain.model.cliente;
 
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
 
-// A validação do Email será trocada por uma lib de terceiros
-
 public class Email {
 
     String EMAIL_REGEX = "^(.+)@(\\S+)$";

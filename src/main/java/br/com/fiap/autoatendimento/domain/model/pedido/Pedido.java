@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-// Aggregate Root
 public class Pedido {
 
 	private Integer idPedido;

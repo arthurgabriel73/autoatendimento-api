@@ -2,8 +2,6 @@ package br.com.fiap.autoatendimento.domain.model.cliente;
 
 import br.com.fiap.autoatendimento.domain.exceptions.ValidationException;
 
-// A validação do CPF será trocada por uma lib de terceiros
-
 public class Cpf {
 
 	private final String value;
