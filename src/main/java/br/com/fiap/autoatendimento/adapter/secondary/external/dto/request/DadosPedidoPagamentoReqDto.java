@@ -1,5 +1,7 @@
 package br.com.fiap.autoatendimento.adapter.secondary.external.dto.request;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +31,9 @@ public class DadosPedidoPagamentoReqDto {
 
     @JsonProperty("description")
     private String description;
+
+    @JsonProperty("items")
+    private List<ProdutoDadosPedidoPagamentoReqDto> items;
 
     public String toJson() {
         return toJson(this);
