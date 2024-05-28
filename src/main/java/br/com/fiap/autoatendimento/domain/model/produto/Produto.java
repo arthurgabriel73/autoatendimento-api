@@ -18,5 +18,9 @@ public class Produto {
 	private String imagem;
 	private Boolean ativo;
 	private Categoria categoria;
+
+	public void desativar() {
+		this.ativo = false;
+	}
   
 }

@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.application.usecase.produto;
 import br.com.fiap.autoatendimento.application.port.in.produto.RemoverProdutoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
+import br.com.fiap.autoatendimento.domain.model.produto.Produto;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,10 @@ public class RemoverProdutoUseCase implements RemoverProdutoPortIn {
     @Transactional
     @Override
     public void executar(Integer idProduto) {
-        produtoPortOut.buscarPorIdProduto(idProduto)
+        Produto produto = produtoPortOut.buscarPorIdProduto(idProduto)
             .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto não encontrado."));
-
-        produtoPortOut.remover(idProduto);
+        produto.desativar();
+        produtoPortOut.atualizar(produto);
     }
 
 }
