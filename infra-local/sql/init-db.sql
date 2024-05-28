@@ -77,10 +77,3 @@ INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (1, 'PENDENTE');
 INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (2, 'APROVADO');
 INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (3, 'REJEITADO');
 INSERT INTO status_pagamento(id_status_pagamento, nome) VALUES (4, 'CANCELADO');
-
--- massa para testes
-INSERT INTO produto (id_produto, nome, descricao, preco, imagem, ativo, id_categoria) VALUES (1, 'Big Mac', 'Lanche de carne com picles', 19.99, 'big_mac.jpg', true, 1);
-INSERT INTO produto (id_produto, nome, descricao, preco, imagem, ativo, id_categoria) VALUES (2, 'Coca-Cola', 'Bebida Coca-Cola 500ml', 5.99, 'coca_cola.jpg', true, 3);
-
-INSERT INTO cliente (cpf, nome, email) VALUES ('27528461008', 'Fulano', 'fulano@fiap.com.br');
-INSERT INTO cliente (cpf, nome, email) VALUES ('40466341032', 'Beltrano', 'beltrano@fiap.com.br');
