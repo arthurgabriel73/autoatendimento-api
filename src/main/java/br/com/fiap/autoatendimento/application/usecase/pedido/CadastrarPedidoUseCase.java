@@ -2,10 +2,12 @@ package br.com.fiap.autoatendimento.application.usecase.pedido;
 
 import br.com.fiap.autoatendimento.application.port.in.pedido.CadastrarPedidoPortIn;
 import br.com.fiap.autoatendimento.application.port.out.ClientePortOut;
+import br.com.fiap.autoatendimento.application.port.out.QRCodeServicePortOut;
 import br.com.fiap.autoatendimento.application.port.out.PagamentoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.PedidoPortOut;
 import br.com.fiap.autoatendimento.application.port.out.ProdutoPortOut;
 import br.com.fiap.autoatendimento.application.usecase.exception.ClienteNaoEncontradoException;
+import br.com.fiap.autoatendimento.application.usecase.exception.ErroAoGerarQRCodeException;
 import br.com.fiap.autoatendimento.application.usecase.exception.ProdutoNaoEncontradoException;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.application.usecase.pedido.dto.CadastrarPedidoOutputDto;
@@ -19,6 +21,7 @@ import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,6 +36,7 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
     private final ProdutoPortOut produtoPortOut;
     private final PedidoPortOut pedidoPortOut;
     private final PagamentoPortOut pagamentoPortOut;
+    private final QRCodeServicePortOut QRCodePortOut;
 
     @Transactional
     @Override
@@ -73,9 +77,16 @@ public class CadastrarPedidoUseCase implements CadastrarPedidoPortIn {
         final Integer idPedido = pedidoPortOut.salvar(pedido);
         pagamentoPortOut.salvar(pagamento);
 
-        return CadastrarPedidoOutputDto.builder()
-                .idPedido(idPedido)
-                .build();
+        try {
+            BufferedImage qrCode = QRCodePortOut.gerar(pedido);
+            return CadastrarPedidoOutputDto.builder()
+                    .idPedido(idPedido)
+                    .qrCode(qrCode)
+                    .build();
+        } catch (Exception e) {
+            throw new ErroAoGerarQRCodeException("Erro ao gerar o QRCode.");
+        }
+        
     }
 
 }

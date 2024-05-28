@@ -117,4 +117,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
     }
 
+    @ExceptionHandler(ErroAoGerarQRCodeException.class)
+    public ResponseEntity<Object> ErroAoGerarQRCodeException(ErroAoGerarQRCodeException exception,
+                                                                      WebRequest request) {
+
+        final ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
+    }
+
 }
