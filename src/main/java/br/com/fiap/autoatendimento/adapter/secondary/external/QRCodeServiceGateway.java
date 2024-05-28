@@ -20,14 +20,13 @@ public class QRCodeServiceGateway implements QRCodeServicePortOut {
 
     @Override
     public BufferedImage gerar(Pedido pedido) throws Exception {
-        String qrCodeString = qrCodeGenerator.gerarQRCodeString(pedido);
-        return gerarQRCode(qrCodeString);
+        return gerarQRCode(qrCodeGenerator.gerarQRCodeString(pedido));
     }
 
-    private BufferedImage gerarQRCode(String qrCodeString) throws Exception {
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix bitMatrix = qrCodeWriter
-                .encode(qrCodeString, BarcodeFormat.QR_CODE, 200, 200);
+    private BufferedImage gerarQRCode(String barcodeText) throws Exception {
+        QRCodeWriter barcodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = barcodeWriter
+                .encode(barcodeText, BarcodeFormat.QR_CODE, 200, 200);
         return MatrixToImageWriter.toBufferedImage(bitMatrix);
     }
 
