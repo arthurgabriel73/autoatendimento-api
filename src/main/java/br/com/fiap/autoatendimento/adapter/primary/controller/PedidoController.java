@@ -13,13 +13,18 @@ import br.com.fiap.autoatendimento.application.usecase.pedido.dto.ListarPedidosO
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import org.springframework.http.MediaType;
+import javax.imageio.ImageIO;
+import java.io.IOException;
+
 
 @RestController
 @RequestMapping("/pedidos")
@@ -35,7 +40,7 @@ public class PedidoController {
 
     @PostMapping(produces = IMAGE_PNG_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public BufferedImage cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
+    public ResponseEntity<byte[]> cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
                 .cpf(request.getCpf())
@@ -44,7 +49,13 @@ public class PedidoController {
 
         final CadastrarPedidoOutputDto output = cadastrarPedidoPortIn.executar(input);
 
-        return output.getQrCode();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(output.getQrCode(), "png", baos);
+        byte[] imageBytes = baos.toByteArray();
+        
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .contentType(MediaType.IMAGE_PNG)
+        .body(imageBytes);
     }
 
     @PatchMapping("/{idPedido}/status")
