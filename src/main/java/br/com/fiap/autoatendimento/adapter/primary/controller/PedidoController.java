@@ -27,13 +27,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PedidoController {
 
+    public static final String IMAGE_PNG_VALUE = "image/png";
     public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
     private final CadastrarPedidoPortIn cadastrarPedidoPortIn;
     private final AtualizarStatusPedidoPortIn atualizarStatusPedidoPortIn;
     private final ListarPedidosPortIn listarPedidosPortIn;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(produces = IMAGE_PNG_VALUE)
     public BufferedImage cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) {
 
         final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
