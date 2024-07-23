@@ -1,7 +1,6 @@
 package br.com.fiap.autoatendimento.configuration;
 
-import br.com.fiap.autoatendimento.application.usecase.exception.*;
-import br.com.fiap.autoatendimento.domain.exceptions.BusinessException;
+import br.com.fiap.autoatendimento.core.exception.*;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
