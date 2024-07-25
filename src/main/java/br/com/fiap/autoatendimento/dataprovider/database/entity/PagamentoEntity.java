@@ -27,7 +27,7 @@ public class PagamentoEntity {
     private Integer idPagamento;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "id_status_pagamento", updatable = false, nullable = false)
+    @JoinColumn(name = "id_status_pagamento", nullable = false)
     private StatusPagamentoEntity statusPagamento;
 
     @OneToOne(optional = false)
