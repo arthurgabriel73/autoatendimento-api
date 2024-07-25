@@ -59,7 +59,7 @@ public class PedidoController {
 
     @PatchMapping("/{idPedido}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizarStatus(@PathVariable("idPedido") Integer idPedido,
+    public void atualizarStatus(@PathVariable Integer idPedido,
                                 @Valid @RequestBody AtualizarStatusPedidoReqDto request) {
 
         final AtualizarStatusPedidoInputDto input = AtualizarStatusPedidoInputDto.builder()
