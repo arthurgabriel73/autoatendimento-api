@@ -38,4 +38,13 @@ public class StatusPedidoDatabase implements StatusPedidoGateway {
                 .collect(Collectors.toList());
     }
 
+	@Override
+	public Optional<StatusPedido> buscarPorNome(String nome) {
+		return statusPedidoRepository.findByNome(nome).map(entity ->
+				StatusPedido.builder()
+						.idStatusPedido(entity.getIdStatusPedido())
+						.nome(entity.getNome())
+						.build());
+	}
+
 }

@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface StatusPedidoGateway {
     Optional<StatusPedido> buscarPorIdStatusPedido(Integer idStatusPedido);
+    Optional<StatusPedido> buscarPorNome(String nome);
     List<StatusPedido> listar();
 }

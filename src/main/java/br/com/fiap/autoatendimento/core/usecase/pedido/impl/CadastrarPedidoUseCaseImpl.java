@@ -3,6 +3,8 @@ package br.com.fiap.autoatendimento.core.usecase.pedido.impl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.CadastrarPedidoUseCase;
 import br.com.fiap.autoatendimento.core.gateway.ClienteGateway;
 import br.com.fiap.autoatendimento.core.gateway.QRCodeServiceGateway;
+import br.com.fiap.autoatendimento.core.gateway.StatusPagamentoGateway;
+import br.com.fiap.autoatendimento.core.gateway.StatusPedidoGateway;
 import br.com.fiap.autoatendimento.core.gateway.PagamentoGateway;
 import br.com.fiap.autoatendimento.core.gateway.PedidoGateway;
 import br.com.fiap.autoatendimento.core.gateway.ProdutoGateway;
@@ -32,12 +34,14 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
 
-    private final static Integer STATUS_RECEBIDO = 1;
-    private final static Integer STATUS_PENDENTE = 1;
+    private final static String STATUS_PEDIDO_RECEBIDO = "RECEBIDO";
+    private final static String STATUS_PAGAMENTO_PENDENTE = "PENDENTE";
     private final ClienteGateway clienteGateway;
     private final ProdutoGateway produtoGateway;
     private final PedidoGateway pedidoGateway;
+    private final StatusPedidoGateway statusPedidoGateway;
     private final PagamentoGateway pagamentoGateway;
+    private final StatusPagamentoGateway statusPagamentoGateway;
     private final QRCodeServiceGateway QRCodePortOut;
 
     @Transactional
@@ -66,23 +70,29 @@ public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
             produtos.add(produto);
         }
 
+        final StatusPedido statusPedido = statusPedidoGateway.buscarPorNome(STATUS_PEDIDO_RECEBIDO)
+                .orElseThrow(() -> new RuntimeException("Status de pedido nao encontrado."));
+
         final Pedido pedido = Pedido.builder()
                 .cliente(cliente)
                 .produtos(produtos)
                 .status(StatusPedido.builder()
-                        .idStatusPedido(STATUS_RECEBIDO)
+                        .idStatusPedido(statusPedido.getIdStatusPedido())
                         .build())
                 .dataHoraInicio(LocalDateTime.now())
                 .build();
 
         final Integer idPedido = pedidoGateway.salvar(pedido);
 
+        final StatusPagamento statusPagamento = statusPagamentoGateway.buscarPorNome(STATUS_PAGAMENTO_PENDENTE)
+        .orElseThrow(() -> new RuntimeException("Status de pagamento nao encontrado."));
+
         pagamentoGateway.salvar(Pagamento.builder()
                 .pedido(Pedido.builder()
                         .idPedido(idPedido)
                         .build())
                 .status(StatusPagamento.builder()
-                        .idStatusPagamento(STATUS_PENDENTE)
+                        .idStatusPagamento(statusPagamento.getIdStatusPagamento())
                         .build())
                 .build());
 
@@ -92,7 +102,7 @@ public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
                     .cliente(cliente)
                     .produtos(produtos)
                     .status(StatusPedido.builder()
-                            .idStatusPedido(STATUS_RECEBIDO)
+                            .idStatusPedido(statusPagamento.getIdStatusPagamento())
                             .build())
                     .build());
             return CadastrarPedidoOutputDto.builder()
