@@ -1,6 +1,7 @@
 package br.com.fiap.autoatendimento.entrypoint.rest;
 
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.AtualizarStatusPedidoReqDto;
+import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.ListarPedidosResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.CadastrarPedidoReqDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
@@ -13,12 +14,13 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.dto.ListarPedidosOutputDt
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
+import java.util.Base64;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.springframework.http.MediaType;
@@ -37,25 +39,23 @@ public class PedidoController {
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final ListarPedidosUseCase listarPedidosUseCase;
 
-    @PostMapping(produces = IMAGE_PNG_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<byte[]> cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
+@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+@ResponseStatus(HttpStatus.CREATED)
+public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
-        final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
-                .cpf(request.getCpf())
-                .produtos(request.getProdutos())
-                .build();
+    final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
+            .cpf(request.getCpf())
+            .produtos(request.getProdutos())
+            .build();
 
-        final CadastrarPedidoOutputDto output = cadastrarPedidoUseCase.executar(input);
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(output.getQrCode(), "png", baos);
-        byte[] imageBytes = baos.toByteArray();
-        
-        return ResponseEntity.status(HttpStatus.CREATED)
-        .contentType(MediaType.IMAGE_PNG)
-        .body(imageBytes);
-    }
+    final CadastrarPedidoOutputDto output = cadastrarPedidoUseCase.executar(input);
+    
+    return CadastrarPedidoResDto.builder()
+            .idPedido(output.getIdPedido().toString())
+            .qrCodeImage(toBase64(output.getQrCode()))
+            .build();
+			
+}
 
     @PatchMapping("/{idPedido}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -111,4 +111,11 @@ public class PedidoController {
                 .build();
     }
 
+    private String toBase64(BufferedImage qrCode) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(qrCode, "png", baos);
+        byte[] imageBytes = baos.toByteArray();
+        return Base64.getEncoder().encodeToString(imageBytes);
+    }
+    
 }
