@@ -39,7 +39,7 @@ public class PagamentoController {
 
     @PostMapping("pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public void confirmarPagamentoPedido(@PathVariable("idPedido") Integer idPedido) {
+    public void confirmarPagamentoPedido(@PathVariable Integer idPedido) {
         confirmarPagamentoPedidoUseCase.executar(idPedido);
 
     }
