@@ -54,7 +54,7 @@ public class ProdutoController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ListarProdutosResDto listar(@RequestParam(name = "categoria", required = false) String categoria) {
+    public ListarProdutosResDto listar(@RequestParam(required = false) String categoria) {
 
         final ListarProdutosOutputDto output = listarProdutosUseCase.executar(categoria);
 
@@ -97,7 +97,7 @@ public class ProdutoController {
 
 	@DeleteMapping("/{idProduto}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable("idProduto") Integer idProduto) {
+	public void remover(@PathVariable Integer idProduto) {
 
 		removerProdutoUseCase.executar(idProduto);
 

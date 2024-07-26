@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.fiap.autoatendimento.dataprovider.api.dto.request.DadosPedidoPagamentoReqDto;
 import br.com.fiap.autoatendimento.dataprovider.api.dto.request.ProdutoDadosPedidoPagamentoReqDto;
-import br.com.fiap.autoatendimento.dataprovider.api.dto.response.NotificacaoDePagamentoResDto;
+import br.com.fiap.autoatendimento.dataprovider.api.dto.response.QRCodeDePagamentoResDto;
 import br.com.fiap.autoatendimento.core.entity.pedido.Pedido;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
 import jakarta.inject.Named;
@@ -74,12 +74,11 @@ public class MercadoPagoQRCodeGeneratorApi implements QRCodeGeneratorApi {
 
         HttpEntity<String> httpEntity = new HttpEntity<>(dadosPedido.toJson(), gerarHeaders());
 
-        ResponseEntity<NotificacaoDePagamentoResDto> notificacaoDePagamento = restTemplate
-                .postForEntity(url, httpEntity,NotificacaoDePagamentoResDto.class);
+        ResponseEntity<QRCodeDePagamentoResDto> notificacaoDePagamento = restTemplate
+                .postForEntity(url, httpEntity,QRCodeDePagamentoResDto.class);
         
-        String qrCode = notificacaoDePagamento.getBody().getQr_data();
-
-        return qrCode;
+                QRCodeDePagamentoResDto body = notificacaoDePagamento.getBody();
+                return (body != null) ? body.getQr_data() : null;
 
     }
 

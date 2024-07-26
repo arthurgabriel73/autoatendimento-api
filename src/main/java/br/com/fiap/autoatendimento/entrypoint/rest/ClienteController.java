@@ -36,7 +36,7 @@ public class ClienteController {
 
     @GetMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
-    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable("cpf") String cpf) {
+    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable String cpf) {
         
         final BuscarClientePorCpfOutputDto output = buscarClientePortIn.executar(cpf);
 
