@@ -77,9 +77,8 @@ public class MercadoPagoQRCodeGeneratorApi implements QRCodeGeneratorApi {
         ResponseEntity<QRCodeDePagamentoResDto> notificacaoDePagamento = restTemplate
                 .postForEntity(url, httpEntity,QRCodeDePagamentoResDto.class);
         
-        String qrCode = notificacaoDePagamento.getBody().getQr_data();
-
-        return qrCode;
+                QRCodeDePagamentoResDto body = notificacaoDePagamento.getBody();
+                return (body != null) ? body.getQr_data() : null;
 
     }
 
