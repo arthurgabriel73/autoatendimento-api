@@ -4,13 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.ConsultarStatusPagamentoPedidoResDto;
-import br.com.fiap.autoatendimento.core.usecase.pagamento.ConfirmarPagamentoPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.ConsultarStatusPagamentoPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.dto.ConsultarStatusPagamentoPedidoOutputDto;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 public class PagamentoController {
 
     private final ConsultarStatusPagamentoPedidoUseCase consultarStatusPagamentoPedidoUseCase;
-    private final ConfirmarPagamentoPedidoUseCase confirmarPagamentoPedidoUseCase;
 
     @GetMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
@@ -35,13 +32,6 @@ public class PagamentoController {
                 .idPedido(output.getIdPedido())
                 .statusPagamento(output.getStatusPagamento())
                 .build();
-    }
-
-    @PostMapping("pedido/{idPedido}")
-    @ResponseStatus(HttpStatus.OK)
-    public void confirmarPagamentoPedido(@PathVariable Integer idPedido) {
-        confirmarPagamentoPedidoUseCase.executar(idPedido);
-
     }
     
 }
