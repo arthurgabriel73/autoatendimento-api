@@ -5,18 +5,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.ConfirmarPagamentoPedidoReqDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.ConsultarStatusPagamentoPedidoResDto;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.ConfirmarPagamentoPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.ConsultarStatusPagamentoPedidoUseCase;
-import br.com.fiap.autoatendimento.core.usecase.pagamento.dto.ConfirmarPagamentoPedidoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.dto.ConsultarStatusPagamentoPedidoOutputDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -30,7 +26,7 @@ public class PagamentoController {
 
     @GetMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public ConsultarStatusPagamentoPedidoResDto consultarStatusPagamentoPedido(@PathVariable("idPedido") Integer idPedido) {
+    public ConsultarStatusPagamentoPedidoResDto consultarStatusPagamentoPedido(@PathVariable Integer idPedido) {
         
         final ConsultarStatusPagamentoPedidoOutputDto output = consultarStatusPagamentoPedidoUseCase.executar(idPedido);
 
@@ -41,16 +37,10 @@ public class PagamentoController {
                 .build();
     }
 
-    @PostMapping("/confirmar")
+    @PostMapping("pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public void confirmarPagamentoPedido(@RequestBody @Valid ConfirmarPagamentoPedidoReqDto input) {
-        
-        final ConfirmarPagamentoPedidoInputDto confirmarPagamentoPedidoInputDto = ConfirmarPagamentoPedidoInputDto.builder()
-                .idPedido(input.getIdPedido())
-                .statusPagamento(input.getStatusPagamento())
-                .build();
-        
-        confirmarPagamentoPedidoUseCase.executar(confirmarPagamentoPedidoInputDto);
+    public void confirmarPagamentoPedido(@PathVariable("idPedido") Integer idPedido) {
+        confirmarPagamentoPedidoUseCase.executar(idPedido);
 
     }
     
