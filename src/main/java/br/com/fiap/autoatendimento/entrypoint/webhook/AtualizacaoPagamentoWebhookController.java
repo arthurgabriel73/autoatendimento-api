@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/pagamentos")
 public class AtualizacaoPagamentoWebhookController {
 
-    private NotificacaoAdapter notificacaoAdapter;
+    private final NotificacaoAdapter notificacaoAdapter;
     private final AtualizacaoPagamentoUseCase atualizacaoPagamentoUseCase;
 
     @PostMapping("/pedido/{idPedido}")
