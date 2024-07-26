@@ -55,7 +55,7 @@ public class PedidoDatabase implements PedidoGateway {
     @Override
     public List<Pedido> listar() {
 
-        List<PedidoEntity> pedidos = pedidoRepository.findAll();
+        List<PedidoEntity> pedidos = pedidoRepository.findAllCustom();
 
         return pedidos.stream().map(this::mapEntityToModel).collect(Collectors.toList());
     }
