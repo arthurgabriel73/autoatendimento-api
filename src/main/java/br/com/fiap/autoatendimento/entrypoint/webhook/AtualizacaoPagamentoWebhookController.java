@@ -30,7 +30,7 @@ public class AtualizacaoPagamentoWebhookController {
     public void postMethodName(@PathVariable Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
 
         log.info("Recebendo atualização de pagamento para o pedido {}", idPedido);
-        log.info("Notificação recebida: {}", request);
+        log.info("Notificação recebida: {}", request.toString());
         NotificacaoAtualizacaoPagamento adaptedNotification = notificacaoAdapter.adapt(request);
 
         atualizacaoPagamentoUseCase.executar(idPedido, adaptedNotification);

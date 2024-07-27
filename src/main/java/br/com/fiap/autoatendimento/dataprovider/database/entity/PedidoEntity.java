@@ -23,7 +23,7 @@ public class PedidoEntity implements Serializable {
     @Column(name = "id_pedido")
     private Integer idPedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cpf")
     private ClienteEntity cliente;
 
