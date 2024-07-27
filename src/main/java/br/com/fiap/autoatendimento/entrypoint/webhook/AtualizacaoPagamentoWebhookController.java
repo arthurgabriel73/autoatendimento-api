@@ -1,5 +1,7 @@
 package br.com.fiap.autoatendimento.entrypoint.webhook;
 
+import static br.com.fiap.autoatendimento.configuration.AnsiColors.*;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +29,10 @@ public class AtualizacaoPagamentoWebhookController {
 
     @PostMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public void postMethodName(@PathVariable Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
+    public void handleAtualizacaoPagamento(@PathVariable Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
 
-        log.info("Recebendo atualização de pagamento para o pedido {}", idPedido);
-        log.info("Notificação recebida: {}", request);
+        log.info("{}Atualização de pagamento recebida para o pedido {}: \n{}{}", CYAN.getCode(), idPedido, request, RESET.getCode());
+        
         NotificacaoAtualizacaoPagamento adaptedNotification = notificacaoAdapter.adapt(request);
 
         atualizacaoPagamentoUseCase.executar(idPedido, adaptedNotification);

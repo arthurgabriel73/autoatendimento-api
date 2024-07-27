@@ -19,4 +19,8 @@ public class NotificarPagamentoReqDto {
     @JsonProperty("topic")
     private String topic;
 
+    @Override
+    public String toString() {
+        return String.format("payload: %n{ %n  resource: '%s', %n  topic: '%s' %n}", resource, topic);
+    }
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class NotificacaoAtualizacaoPagamento {
     
-    private String resource;
-    private String topic;
+    private String urlRecurso;
+    private String statusPagamento;
 
 }

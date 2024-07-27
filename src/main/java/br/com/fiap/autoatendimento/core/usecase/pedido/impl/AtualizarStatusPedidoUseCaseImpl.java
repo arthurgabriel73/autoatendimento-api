@@ -1,6 +1,7 @@
 package br.com.fiap.autoatendimento.core.usecase.pedido.impl;
 
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
+import br.com.fiap.autoatendimento.core.gateway.NotificacaoGateway;
 import br.com.fiap.autoatendimento.core.gateway.PedidoGateway;
 import br.com.fiap.autoatendimento.core.gateway.StatusPedidoGateway;
 import br.com.fiap.autoatendimento.core.exception.PedidoNaoEncontradoException;
@@ -20,6 +21,7 @@ public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUs
 
     private final StatusPedidoGateway statusPedidoGateway;
     private final PedidoGateway pedidoGateway;
+    private final NotificacaoGateway notificacaoGateway;
 
     @Transactional
     @Override
@@ -37,8 +39,22 @@ public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUs
         }
 
         pedido.setStatus(statusPedido);
-
         pedidoGateway.salvar(pedido);
+        notificarCliente(pedido, statusPedido);
     }
 
+    private void notificarCliente(Pedido pedido, StatusPedido statusPedido) {
+        if(pedido.getCliente() == null) {
+            return;
+        }
+        String clienteEmailString = pedido.getCliente().getEmail();
+        if(clienteEmailString == null) {
+            return;
+        }
+
+        String message = "Seu pedido foi atualizado para o status: " + statusPedido.getNome();
+        String subjecString = "Atualizacao do seu pedido";
+
+        notificacaoGateway.enviarNotificacao(clienteEmailString, subjecString, message);
+    }
 }

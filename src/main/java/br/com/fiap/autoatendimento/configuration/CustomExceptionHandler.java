@@ -134,4 +134,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
     }
 
+    @ExceptionHandler(StatusPedidoNaoEncontradoException.class)
+    public ResponseEntity<Object> handleStatusPedidoNaoEncontradoException(StatusPedidoNaoEncontradoException exception,
+                                                                      WebRequest request) {
+
+        final ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
+    }
+
 }
