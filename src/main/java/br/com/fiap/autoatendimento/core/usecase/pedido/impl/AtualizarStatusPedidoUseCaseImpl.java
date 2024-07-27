@@ -53,7 +53,7 @@ public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUs
         }
 
         String message = "Seu pedido foi atualizado para o status: " + statusPedido.getNome();
-        String subjecString = "Atualizacao de Pedido";
+        String subjecString = "Atualizacao do seu pedido";
 
         notificacaoGateway.enviarNotificacao(clienteEmailString, subjecString, message);
     }

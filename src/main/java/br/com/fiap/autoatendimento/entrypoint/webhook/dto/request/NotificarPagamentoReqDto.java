@@ -19,4 +19,11 @@ public class NotificarPagamentoReqDto {
     @JsonProperty("topic")
     private String topic;
 
+    @Override
+    public String toString() {
+        return "NotificarPagamentoReqDto{" +
+                "resource='" + resource + '\'' +
+                ", topic='" + topic + '\'' +
+                '}';
+    }
 }
