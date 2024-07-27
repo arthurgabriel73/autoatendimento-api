@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseCase {
     
     private final static String STATUS_PAGAMENTO_APROVADO = "APROVADO";
-    private final static String CODIGO_PAGAMENTO_APROVADO = "payment";
     private final PagamentoGateway pagamentoGateway;
     private final StatusPagamentoGateway statusPagamentoGateway;
     private final PedidoGateway pedidoGateway;
@@ -32,7 +31,7 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
     @Transactional
     public void executar(Integer idPedido, NotificacaoAtualizacaoPagamento notificacao) {
 
-        if (!(CODIGO_PAGAMENTO_APROVADO.equals(notificacao.getTopic()))) {
+        if (!STATUS_PAGAMENTO_APROVADO.equalsIgnoreCase(notificacao.getStatusPagamento())) {
             return;
         } 
 
@@ -68,7 +67,7 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
             return;
         }
         
-        String message = "Pagamento recebido com sucesso!";
+        String message = String.format("Pagamento recebido com sucesso para o pedido %d!", idPedido);
         String subjecString = "Pagamento Recebido";
 
         notificacaoGateway.enviarNotificacao(clienteEmailString, subjecString, message);

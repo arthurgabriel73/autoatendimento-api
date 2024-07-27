@@ -21,9 +21,6 @@ public class NotificarPagamentoReqDto {
 
     @Override
     public String toString() {
-        return "NotificarPagamentoReqDto{" +
-                "resource='" + resource + '\'' +
-                ", topic='" + topic + '\'' +
-                '}';
+        return String.format("payload: %n{ %n  resource: '%s', %n  topic: '%s' %n}", resource, topic);
     }
 }

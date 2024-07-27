@@ -7,10 +7,17 @@ import br.com.fiap.autoatendimento.entrypoint.webhook.dto.request.NotificarPagam
 @Named
 public class MercadoPagoAdapter implements NotificacaoAdapter {
 
+    @Override
     public NotificacaoAtualizacaoPagamento adapt(NotificarPagamentoReqDto request) {
         NotificacaoAtualizacaoPagamento notificacao = new NotificacaoAtualizacaoPagamento();
-        notificacao.setResource((String) request.getResource());
-        notificacao.setTopic((String) request.getTopic());
+        notificacao.setUrlRecurso(request.getResource());
+        
+        String statusPagamento = request.getTopic();
+        if ("payment".equals(statusPagamento)) {
+            statusPagamento = "aprovado";
+        }
+        notificacao.setStatusPagamento(statusPagamento);
+        
         return notificacao;
     }
 }

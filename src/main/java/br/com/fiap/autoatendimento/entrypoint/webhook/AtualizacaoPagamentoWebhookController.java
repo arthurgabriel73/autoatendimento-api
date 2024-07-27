@@ -31,7 +31,7 @@ public class AtualizacaoPagamentoWebhookController {
     @ResponseStatus(HttpStatus.OK)
     public void handleAtualizacaoPagamento(@PathVariable Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
 
-        log.info("{}Atualizacao de pagamento recebida para o pedido {}: {}{}", CYAN.getCode(), idPedido, request.toString(), RESET.getCode());
+        log.info("{}Atualização de pagamento recebida para o pedido {}: \n{}{}", CYAN.getCode(), idPedido, request, RESET.getCode());
         
         NotificacaoAtualizacaoPagamento adaptedNotification = notificacaoAdapter.adapt(request);
 
