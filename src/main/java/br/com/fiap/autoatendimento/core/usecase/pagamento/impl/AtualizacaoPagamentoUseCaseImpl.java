@@ -69,7 +69,6 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
     }
 
     private void logInfo(Integer idPedido) {
-        log.info("Pagamento recebido para o pedido: {}", idPedido);
         log.info("Atualizando status do pedido {} para: {}", idPedido, STATUS_PEDIDO_EM_PREPARACAO);
     }
 }
