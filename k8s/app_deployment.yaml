@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autoatendimento-deployment
+  labels:
+    app: autoatendimento-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: autoatendimento-app
+  template:
+    metadata:
+      labels:
+        app: autoatendimento-app
+    spec:
+      containers:
+      - name: autoatendimento-app
+        image: autoatendimento:1.0
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DATASOURCE_URL
+            value: postgres-db-service       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: autoatendimento-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: autoatendimento-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
