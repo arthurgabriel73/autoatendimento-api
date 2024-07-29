@@ -10,6 +10,12 @@ Essa aplicação serve para um cliente solicitar um pedido de produtos de uma la
  - Cadastro e identificação de clientes
  - Cadastro, atualização e consulta de pedidos
 
+## Desenho da Arquitetura
+
+Estrutura do cluster Kubernetes da aplicação:
+
+![Desenho da Arquitetura](desenho_arquitetura_k8s.png)
+
 # Como executar localmente:
  
 ## Pré-requisitos:
