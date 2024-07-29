@@ -32,7 +32,7 @@ Após cadastrar os produtos, para realizar um novo pedido, deve-se utilizar os s
 | Endpoint                        | Descrição                    |
 |---------------------------------|------------------------------|
 | POST /clientes                  | Cadastrar cliente            |
-| GET /clientes/{cpf}             | Consultar de cliente por CPF |
+| GET /clientes/{cpf}             | Consulta de cliente por CPF  |
 | POST /pedidos                   | Cadastrar pedido             |                             
 | PUT /pedidos/{id_pedido}/status | Atualizar status do pedido   | 
 | PUT /pedidos                    | Listar pedidos               |                                
