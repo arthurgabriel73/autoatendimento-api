@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: autoatendimento-app
-        image: autoatendimento:1.0
+        image: arthurgabriel73/autoatendimento:2.0
         ports:
         - containerPort: 8080
         env:
