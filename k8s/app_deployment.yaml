@@ -5,7 +5,7 @@ metadata:
   labels:
     app: autoatendimento-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: autoatendimento-app
@@ -21,7 +21,10 @@ spec:
         - containerPort: 8080
         env:
           - name: DATASOURCE_URL
-            value: postgres-db-service       
+            value: postgres-db-service
+        resources:
+          requests:
+            cpu: 1m
 ---
 apiVersion: v1
 kind: Service
