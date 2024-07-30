@@ -10,6 +10,40 @@ Essa aplicação serve para um cliente solicitar um pedido de produtos de uma la
  - Cadastro e identificação de clientes
  - Cadastro, atualização e consulta de pedidos
 
+## Desenho da arquitetura
+
+Estrutura do cluster Kubernetes da aplicação:
+
+![Desenho da Arquitetura](desenho_arquitetura_k8s.png)
+
+## Guia de utilização da aplicação
+
+Para utilização do sistema de autoatendimento, primeiramente deve-se cadastrar os produtos através dos seguintes endpoints:
+
+| Endpoint                      | Descrição         |
+|-------------------------------|-------------------|
+| POST /produtos                | Cadastrar produto |
+| GET /produtos                 | Listar produtos   |
+| PUT /produtos/{id_produto}    | Atualizar produto |
+| DELETE /produtos/{id_produto} | Excluir produto   |
+
+Após cadastrar os produtos, para realizar um novo pedido, deve-se utilizar os seguintes endpoints: 
+
+| Endpoint                        | Descrição                    |
+|---------------------------------|------------------------------|
+| POST /clientes                  | Cadastrar cliente            |
+| GET /clientes/{cpf}             | Consulta de cliente por CPF  |
+| POST /pedidos                   | Cadastrar pedido             |                             
+| PUT /pedidos/{id_pedido}/status | Atualizar status do pedido   | 
+| PUT /pedidos                    | Listar pedidos               |                                
+
+E por fim, realizar o pagamento do pedido:
+
+| Endpoint                          | Descrição                               |
+|-----------------------------------|-----------------------------------------|
+| POST /pagamentos/confirmar        | Realizar pagamento do pedido            |
+| GET /pagamentos/pedido/{idPedido} | Consultar status do pagamento do pedido |
+
 # Como executar localmente:
  
 ## Pré-requisitos:
