@@ -20,11 +20,13 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DATASOURCE_URL
-            value: postgres-db-service
+        - name: DATASOURCE_URL
+          value: postgres-db-service
         resources:
           requests:
-            cpu: 1m
+            cpu: "200m"
+          limits:
+            cpu: "500m"
 ---
 apiVersion: v1
 kind: Service
@@ -35,6 +37,6 @@ spec:
   selector:
     app: autoatendimento-app
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
