@@ -14,11 +14,11 @@ services:
     volumes:
       - ./infra-local/sql/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
-#  autoatendimento:
-#    image: autoatendimento:1.0
-#    depends_on:
-#      - postgres
-#    environment:
-#      - DATASOURCE_URL=postgres
-#    ports:
-#      - 8080:8080
+  autoatendimento:
+    image: arthurgabriel73/autoatendimento:2.0
+    depends_on:
+      - postgres
+    environment:
+      - DATASOURCE_URL=postgres
+    ports:
+      - 8080:8080
