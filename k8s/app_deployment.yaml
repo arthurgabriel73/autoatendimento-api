@@ -24,9 +24,9 @@ spec:
           value: postgres-db-service
         resources:
           requests:
-            cpu: "200m"
+            cpu: "550m"
           limits:
-            cpu: "500m"
+            cpu: "800m"
 ---
 apiVersion: v1
 kind: Service
