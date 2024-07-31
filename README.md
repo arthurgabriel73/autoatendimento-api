@@ -47,7 +47,7 @@ E por fim, realizar o pagamento do pedido:
 # Como executar localmente:
 
 ## Com Docker
-## Pré-requisitos:
+### Pré-requisitos:
  - Docker instalado na máquina
 ### Passo a passo:
  - Executar o docker
