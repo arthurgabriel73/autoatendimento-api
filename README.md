@@ -45,17 +45,34 @@ E por fim, realizar o pagamento do pedido:
 | GET /pagamentos/pedido/{idPedido} | Consultar status do pagamento do pedido |
 
 # Como executar localmente:
- 
+
+## Com Docker
 ## Pré-requisitos:
  - Docker instalado na máquina
-
-## Passo a passo:
+### Passo a passo:
  - Executar o docker
  - Abrir um terminal de comandos (git bash por exemplo)
- - Executar o comando: docker build -t autoatendimento:1.0 .
  - Executar o comando: docker-compose up -d
  - Abrir o browser e digitar o seguinte caminho: http://localhost:8080/swagger-ui/index.html
  - Executar os endpoints através da especificação Open API
- ###
- ###
+ 
+ ## Com Kubernetes
+ ### No diretório /k8s rode os seguintes comandos:
+ #### 1 - Configurando o Banco de Dados
+ ```bash
+ kubectl apply -f postgres_deployment.yaml
+ ```
+ #### 2 - Criando o deployment da aplicação
+ ```bash
+ kubectl apply -f app_deployment.yaml
+ ```
+ #### 3 - Aplicando o metrics
+ ```bash
+ kubectl apply -f metrics.yaml
+ ```
+ #### 4 - Aplicando o HPA
+ ```bash
+ kubectl apply -f app_hpa.yaml
+ ```
  ### Documentação do sistema (DDD) com Event Storming: https://miro.com/app/board/uXjVKKXvR9g=/
+ ### Link do vídeo no youtube demonstrando o funcionamento do kubernetes: https://www.youtube.com/watch?v=AqKuZsq5wAE
