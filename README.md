@@ -76,3 +76,5 @@ E por fim, realizar o pagamento do pedido:
  ```
  ### Documentação do sistema (DDD) com Event Storming: https://miro.com/app/board/uXjVKKXvR9g=/
  ### Link do vídeo no youtube demonstrando o funcionamento do kubernetes: https://www.youtube.com/watch?v=AqKuZsq5wAE
+
+ ### A Collection to postman está em ``./collection``
