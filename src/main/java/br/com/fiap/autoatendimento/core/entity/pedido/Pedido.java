@@ -4,7 +4,7 @@ import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

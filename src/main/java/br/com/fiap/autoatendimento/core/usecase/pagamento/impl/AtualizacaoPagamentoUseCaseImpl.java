@@ -47,7 +47,7 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
         final Pagamento pagamento = pagamentoGateway.buscarPorIdPedido(idPedido)
                 .orElseThrow(() -> new PagamentoNaoEncontradoException("Pagamento não encontrado."));
 
-        pagamento.setStatus(statusPagamento);
+        pagamento.atualizarStatus(statusPagamento);
         pagamentoGateway.atualizar(pagamento);
 
     }
