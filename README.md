@@ -49,9 +49,11 @@ E por fim, realizar o pagamento do pedido:
 ## Com Docker
 ### Pré-requisitos:
  - Docker instalado na máquina
+ - Ngrok instalado na máquina
 ### Passo a passo:
  - Executar o docker
  - Abrir um terminal de comandos (git bash por exemplo)
+ - Executar o comando: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Executar o comando: docker-compose up -d
  - Abrir o browser e digitar o seguinte caminho: http://localhost:8080/swagger-ui/index.html
  - Executar os endpoints através da especificação Open API
