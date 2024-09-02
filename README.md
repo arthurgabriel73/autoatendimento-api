@@ -60,19 +60,23 @@ E por fim, realizar o pagamento do pedido:
  
  ## Com Kubernetes
  ### No diretório /k8s rode os seguintes comandos:
- #### 1 - Configurando o Banco de Dados
+ #### 1 - Configurando o serviço de tunelamento
+  ```bash
+ ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
+ ```
+ #### 2 - Configurando o Banco de Dados
  ```bash
  kubectl apply -f postgres_deployment.yaml
  ```
- #### 2 - Criando o deployment da aplicação
+ #### 3 - Criando o deployment da aplicação
  ```bash
  kubectl apply -f app_deployment.yaml
  ```
- #### 3 - Aplicando o metrics
+ #### 4 - Aplicando o metrics
  ```bash
  kubectl apply -f metrics.yaml
  ```
- #### 4 - Aplicando o HPA
+ #### 5 - Aplicando o HPA
  ```bash
  kubectl apply -f app_hpa.yaml
  ```
