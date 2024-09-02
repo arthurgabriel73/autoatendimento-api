@@ -19,49 +19,45 @@ import java.util.Objects;
 @AllArgsConstructor
 public class Pedido {
 
-	private Integer idPedido;
-	private Cliente cliente;
-	private List<Produto> produtos;
-	private StatusPedido status;
-	private LocalDateTime dataHoraInicio;
-	private LocalDateTime dataHoraFim;
+    private Integer idPedido;
+    private Cliente cliente;
+    private List<Produto> produtos;
+    private StatusPedido status;
+    private LocalDateTime dataHoraInicio;
+    private LocalDateTime dataHoraFim;
 
-	public void atualizarStatus(StatusPedido status) {
+    public void atualizarStatus(StatusPedido novoStatus) {
+        this.status = novoStatus;
 
-		this.status = status;
-	}
+        if (novoStatus.getNome().equalsIgnoreCase("FINALIZADO") ||
+                novoStatus.getNome().equalsIgnoreCase("CANCELADO")) {
+            this.dataHoraFim = LocalDateTime.now();
+        }
+    }
 
-	public void adicionarProduto(Produto produto) {
+    public void adicionarProduto(Produto produto) {
+        if (produtos == null) {
+            produtos = new ArrayList<>();
+        }
+        produtos.add(produto);
+    }
 
-		if (produtos == null) {
-			produtos = new ArrayList<>();
-		}
+    public void removerProduto(Produto produto) {
+        if (produtos != null) {
+            produtos.remove(produto);
+        }
+    }
 
-		produtos.add(produto);
-	}
+    public double calcularValorTotal() {
+        return produtos.stream()
+                .mapToDouble(Produto::getPreco)
+                .sum();
+    }
 
-	public void removerProduto(Produto produto) {
-
-		if (produtos != null) {
-			produtos.remove(produto);
-		}
-
-	}
-
-	public double calcularValorTotal() {
-
-		return produtos.stream()
-			.mapToDouble(Produto::getPreco)
-			.sum();
-	}
-
-	public String calcularTempoEspera() {
-
-		final Duration duration = Objects.isNull(dataHoraFim) ?
-				Duration.between(dataHoraInicio, LocalDateTime.now()) : Duration.between(dataHoraInicio, dataHoraFim);
-		final Long minutes = duration.toMinutes();
-
-		return minutes.toString() + " minutos";
-	}
-
+    public String calcularTempoEspera() {
+        final Duration duration = Objects.isNull(dataHoraFim) ?
+                Duration.between(dataHoraInicio, LocalDateTime.now()) : Duration.between(dataHoraInicio, dataHoraFim);
+        final Long minutes = duration.toMinutes();
+        return minutes.toString() + " minutos";
+    }
 }

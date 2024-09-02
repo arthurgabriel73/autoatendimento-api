@@ -13,8 +13,6 @@ import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Named
 @RequiredArgsConstructor
 public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUseCase {
@@ -28,33 +26,28 @@ public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUs
     public void executar(AtualizarStatusPedidoInputDto input) {
 
         final Pedido pedido = pedidoGateway.buscarPorIdPedido(input.getIdPedido())
-                .orElseThrow(() -> new PedidoNaoEncontradoException("Pedido nao encontrado."));
+                .orElseThrow(() -> new PedidoNaoEncontradoException("Pedido não encontrado."));
 
         final StatusPedido statusPedido = statusPedidoGateway.buscarPorIdStatusPedido(input.getIdStatusPedido())
-                .orElseThrow(() -> new StatusPedidoInvalidoException("Status do pedido informado invalido."));
+                .orElseThrow(() -> new StatusPedidoInvalidoException("Status do pedido informado inválido."));
 
-        if (statusPedido.getNome().equalsIgnoreCase("FINALIZADO") ||
-                statusPedido.getNome().equalsIgnoreCase("CANCELADO")) {
-            pedido.setDataHoraFim(LocalDateTime.now());
-        }
-
-        pedido.setStatus(statusPedido);
+        pedido.atualizarStatus(statusPedido);
         pedidoGateway.salvar(pedido);
         notificarCliente(pedido, statusPedido);
     }
 
     private void notificarCliente(Pedido pedido, StatusPedido statusPedido) {
-        if(pedido.getCliente() == null) {
+        if (pedido.getCliente() == null) {
             return;
         }
         String clienteEmailString = pedido.getCliente().getEmail();
-        if(clienteEmailString == null) {
+        if (clienteEmailString == null) {
             return;
         }
 
         String message = "Seu pedido foi atualizado para o status: " + statusPedido.getNome();
-        String subjecString = "Atualizacao do seu pedido";
+        String subject = "Atualização do seu pedido";
 
-        notificacaoGateway.enviarNotificacao(clienteEmailString, subjecString, message);
+        notificacaoGateway.enviarNotificacao(clienteEmailString, subject, message);
     }
 }
