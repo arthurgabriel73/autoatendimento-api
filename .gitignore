@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### secrets ###
+k8s/postgres-secret.yaml
