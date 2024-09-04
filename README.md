@@ -59,6 +59,23 @@ E por fim, realizar o pagamento do pedido:
  - Executar os endpoints através da especificação Open API
  
  ## Com Kubernetes
+ ### Configuração dos secrets
+ 1. Crie um arquivo postgres-secret.yaml dentro do diretório k8s
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+stringData:
+  POSTGRES_ROOT_PASSWORD: {VALUE}
+  POSTGRES_DATABASE: {VALUE}
+  POSTGRES_USER: {VALUE}
+  POSTGRES_PASSWORD: {VALUE}
+```
+2. Aplique o arquivo
+ ```bash
+ kubectl apply -f postgres-secret.yaml
+ ```
  ### No diretório /k8s rode os seguintes comandos:
  #### 1 - Configurando o serviço de tunelamento
   ```bash
