@@ -4,12 +4,10 @@ import br.com.fiap.autoatendimento.core.usecase.statuspedido.ListarStatusPedidos
 import br.com.fiap.autoatendimento.core.gateway.StatusPedidoGateway;
 import br.com.fiap.autoatendimento.core.usecase.statuspedido.dto.ListarStatusPedidosOutputDto;
 import br.com.fiap.autoatendimento.core.entity.pedido.StatusPedido;
-import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Named
 @RequiredArgsConstructor
 public class ListarStatusPedidosUseCaseImpl implements ListarStatusPedidosUseCase {
 

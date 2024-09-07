@@ -37,6 +37,7 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Transactional
     public CadastrarProdutoResDto cadastrar(@RequestBody @Valid CadastrarProdutoReqDto request) {
 
         final CadastrarProdutoInputDto input = CadastrarProdutoInputDto.builder()

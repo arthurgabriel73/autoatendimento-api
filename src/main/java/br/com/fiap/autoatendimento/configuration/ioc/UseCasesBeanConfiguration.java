@@ -27,7 +27,9 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.impl.AtualizarStatusPedid
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.CadastrarPedidoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.ListarPedidosUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.produto.AtualizarProdutoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.produto.CadastrarProdutoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.produto.impl.AtualizarProdutoUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.produto.impl.CadastrarProdutoUseCaseImpl;
 
 @Configuration
 public class UseCasesBeanConfiguration {
@@ -81,5 +83,11 @@ public class UseCasesBeanConfiguration {
         ProdutoGateway produtoGateway,
         CategoriaGateway categoriaGateway) {
             return new AtualizarProdutoUseCaseImpl(produtoGateway, categoriaGateway);
+        }
+
+    @Bean CadastrarProdutoUseCase cadastrarProdutoUseCase(
+        ProdutoGateway produtoGateway,
+        CategoriaGateway categoriaGateway) {
+            return new CadastrarProdutoUseCaseImpl(produtoGateway, categoriaGateway);
         }
 }
