@@ -7,17 +7,14 @@ import br.com.fiap.autoatendimento.core.exception.ClienteJaCadastradoException;
 import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import br.com.fiap.autoatendimento.core.entity.cliente.Cpf;
 import br.com.fiap.autoatendimento.core.entity.cliente.Email;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class CadastrarClienteUseCaseImpl implements CadastrarClienteUseCase {
 
     private final ClienteGateway clienteGateway;
 
-    @Transactional
     @Override
     public void executar(CadastrarClienteInputDto input) {
 

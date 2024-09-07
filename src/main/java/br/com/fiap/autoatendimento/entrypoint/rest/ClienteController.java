@@ -6,6 +6,7 @@ import br.com.fiap.autoatendimento.core.usecase.cliente.BuscarClientePorCpfUseCa
 import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.CadastrarClienteInputDto;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Transactional
     public void cadastrar(@Valid @RequestBody CadastrarClienteReqDto request) {
 
         final CadastrarClienteInputDto input = CadastrarClienteInputDto.builder()
