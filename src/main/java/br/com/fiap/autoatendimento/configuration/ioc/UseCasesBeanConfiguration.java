@@ -28,8 +28,14 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.impl.CadastrarPedidoUseCa
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.ListarPedidosUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.produto.AtualizarProdutoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.produto.CadastrarProdutoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.produto.ListarProdutosUseCase;
+import br.com.fiap.autoatendimento.core.usecase.produto.RemoverProdutoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.produto.impl.AtualizarProdutoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.produto.impl.CadastrarProdutoUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.produto.impl.ListarProdutosUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.produto.impl.RemoverProdutoUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.statuspedido.ListarStatusPedidosUseCase;
+import br.com.fiap.autoatendimento.core.usecase.statuspedido.impl.ListarStatusPedidosUseCaseImpl;
 
 @Configuration
 public class UseCasesBeanConfiguration {
@@ -89,5 +95,20 @@ public class UseCasesBeanConfiguration {
         ProdutoGateway produtoGateway,
         CategoriaGateway categoriaGateway) {
             return new CadastrarProdutoUseCaseImpl(produtoGateway, categoriaGateway);
+        }
+
+    @Bean ListarProdutosUseCase listarProdutosUseCase(
+        ProdutoGateway produtoGateway) {
+            return new ListarProdutosUseCaseImpl(produtoGateway);
+        }
+
+    @Bean RemoverProdutoUseCase removerProdutoUseCase(
+        ProdutoGateway produtoGateway) {
+            return new RemoverProdutoUseCaseImpl(produtoGateway);
+        }
+
+    @Bean ListarStatusPedidosUseCase listarStatusPedidosUseCase(
+        StatusPedidoGateway statusPedidoGateway) {
+            return new ListarStatusPedidosUseCaseImpl(statusPedidoGateway);
         }
 }
