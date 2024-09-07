@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.AtualizacaoPagamentoUseCase;
 import br.com.fiap.autoatendimento.entrypoint.webhook.adapter.NotificacaoAtualizacaoPagamento;
 import br.com.fiap.autoatendimento.entrypoint.webhook.dto.request.NotificarPagamentoReqDto;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +30,7 @@ public class AtualizacaoPagamentoWebhookController {
 
     @PostMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
+    @Transactional
     public void handleAtualizacaoPagamento(@PathVariable Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
 
         log.info("{}Atualização de pagamento recebida para o pedido {}: \n{}{}", CYAN.getCode(), idPedido, request, RESET.getCode());

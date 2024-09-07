@@ -15,6 +15,8 @@ import br.com.fiap.autoatendimento.core.usecase.cliente.BuscarClientePorCpfUseCa
 import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.BuscarClienteUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.CadastrarClienteUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.pagamento.AtualizacaoPagamentoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.pagamento.impl.AtualizacaoPagamentoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.CadastrarPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.ListarPedidosUseCase;
@@ -55,5 +57,13 @@ public class UseCasesBeanConfiguration {
     @Bean CadastrarClienteUseCase cadastrarClienteUseCase(
         ClienteGateway clienteGateway) {
             return new CadastrarClienteUseCaseImpl(clienteGateway);
+        }
+
+    @Bean AtualizacaoPagamentoUseCase atualizacaoPagamentoUseCase(
+        PagamentoGateway pagamentoGateway,
+        StatusPagamentoGateway statusPagamentoGateway,
+        PedidoGateway pedidoGateway,
+        NotificacaoGateway notificacaoGateway) {
+            return new AtualizacaoPagamentoUseCaseImpl( pagamentoGateway, statusPagamentoGateway, pedidoGateway, notificacaoGateway);
         }
 }
