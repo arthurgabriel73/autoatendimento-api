@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ClienteController {
 
+    private final BuscarClientePorCpfUseCase buscarClienteUseCase;
     private final CadastrarClienteUseCase cadastrarClienteUseCase;
-    private final BuscarClientePorCpfUseCase buscarClientePortIn;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,7 +38,7 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.OK)
     public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable String cpf) {
         
-        final BuscarClientePorCpfOutputDto output = buscarClientePortIn.executar(cpf);
+        final BuscarClientePorCpfOutputDto output = buscarClienteUseCase.executar(cpf);
 
         return BuscarClientePorCpfResDto.builder()
                 .cpf(output.getCpf())
