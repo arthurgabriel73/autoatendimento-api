@@ -42,6 +42,7 @@ public class PedidoController {
 
 @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 @ResponseStatus(HttpStatus.CREATED)
+@Transactional
 public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
     final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
