@@ -49,9 +49,10 @@ public class Pedido {
     }
 
     public double calcularValorTotal() {
-        return produtos.stream()
+        double total = produtos.stream()
                 .mapToDouble(Produto::getPreco)
                 .sum();
+                return Math.round(total * 100.0) / 100.0;
     }
 
     public String calcularTempoEspera() {
