@@ -8,7 +8,7 @@ import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class BuscarClienteUseCaseImpl implements BuscarClientePorCpfUseCase {
+public class BuscarClientePorCpfUseCaseImpl implements BuscarClientePorCpfUseCase {
     
     private final ClienteGateway clienteGateway;
 
