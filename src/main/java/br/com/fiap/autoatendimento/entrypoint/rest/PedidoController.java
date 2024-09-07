@@ -11,6 +11,7 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.dto.AtualizarStatusPedido
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.ListarPedidosOutputDto;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,7 @@ public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto
 
     @PatchMapping("/{idPedido}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
     public void atualizarStatus(@PathVariable Integer idPedido,
                                 @Valid @RequestBody AtualizarStatusPedidoReqDto request) {
 

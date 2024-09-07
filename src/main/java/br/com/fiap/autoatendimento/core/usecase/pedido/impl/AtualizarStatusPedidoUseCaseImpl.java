@@ -9,11 +9,8 @@ import br.com.fiap.autoatendimento.core.exception.StatusPedidoInvalidoException;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.AtualizarStatusPedidoInputDto;
 import br.com.fiap.autoatendimento.core.entity.pedido.Pedido;
 import br.com.fiap.autoatendimento.core.entity.pedido.StatusPedido;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUseCase {
 
@@ -21,7 +18,6 @@ public class AtualizarStatusPedidoUseCaseImpl implements AtualizarStatusPedidoUs
     private final PedidoGateway pedidoGateway;
     private final NotificacaoGateway notificacaoGateway;
 
-    @Transactional
     @Override
     public void executar(AtualizarStatusPedidoInputDto input) {
 
