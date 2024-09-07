@@ -16,7 +16,9 @@ import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.BuscarClienteUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.CadastrarClienteUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.AtualizacaoPagamentoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.pagamento.ConsultarStatusPagamentoPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.impl.AtualizacaoPagamentoUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.pagamento.impl.ConsultarStatusPagamentoPedidoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.CadastrarPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.ListarPedidosUseCase;
@@ -65,5 +67,10 @@ public class UseCasesBeanConfiguration {
         PedidoGateway pedidoGateway,
         NotificacaoGateway notificacaoGateway) {
             return new AtualizacaoPagamentoUseCaseImpl( pagamentoGateway, statusPagamentoGateway, pedidoGateway, notificacaoGateway);
+        }
+
+    @Bean ConsultarStatusPagamentoPedidoUseCase consultarStatusPagamentoPedidoUseCase(
+        PagamentoGateway pagamentoGateway) {
+            return new ConsultarStatusPagamentoPedidoUseCaseImpl( pagamentoGateway);
         }
 }
