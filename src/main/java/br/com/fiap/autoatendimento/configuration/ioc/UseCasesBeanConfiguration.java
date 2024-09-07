@@ -13,8 +13,10 @@ import br.com.fiap.autoatendimento.core.gateway.StatusPagamentoGateway;
 import br.com.fiap.autoatendimento.core.gateway.StatusPedidoGateway;
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.CadastrarPedidoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.pedido.ListarPedidosUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.AtualizarStatusPedidoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.CadastrarPedidoUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.pedido.impl.ListarPedidosUseCaseImpl;
 
 @Configuration
 public class UseCasesBeanConfiguration {
@@ -34,5 +36,10 @@ public class UseCasesBeanConfiguration {
         StatusPagamentoGateway statusPagamentoGateway,
         QRCodeServiceGateway QRCodePortOut) {
             return new CadastrarPedidoUseCaseImpl(clienteGateway, produtoGateway, pedidoGateway, statusPedidoGateway, pagamentoGateway, statusPagamentoGateway, QRCodePortOut);
+        }
+
+    @Bean ListarPedidosUseCase listarPedidosUseCase(
+        PedidoGateway pedidoGateway) {
+            return new ListarPedidosUseCaseImpl(pedidoGateway);
         }
 }
