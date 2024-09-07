@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.configuration.ioc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import br.com.fiap.autoatendimento.core.gateway.CategoriaGateway;
 import br.com.fiap.autoatendimento.core.gateway.ClienteGateway;
 import br.com.fiap.autoatendimento.core.gateway.NotificacaoGateway;
 import br.com.fiap.autoatendimento.core.gateway.PagamentoGateway;
@@ -25,6 +26,8 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.ListarPedidosUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.AtualizarStatusPedidoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.CadastrarPedidoUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pedido.impl.ListarPedidosUseCaseImpl;
+import br.com.fiap.autoatendimento.core.usecase.produto.AtualizarProdutoUseCase;
+import br.com.fiap.autoatendimento.core.usecase.produto.impl.AtualizarProdutoUseCaseImpl;
 
 @Configuration
 public class UseCasesBeanConfiguration {
@@ -72,5 +75,11 @@ public class UseCasesBeanConfiguration {
     @Bean ConsultarStatusPagamentoPedidoUseCase consultarStatusPagamentoPedidoUseCase(
         PagamentoGateway pagamentoGateway) {
             return new ConsultarStatusPagamentoPedidoUseCaseImpl( pagamentoGateway);
+        }
+
+    @Bean AtualizarProdutoUseCase atualizarProdutoUseCase(
+        ProdutoGateway produtoGateway,
+        CategoriaGateway categoriaGateway) {
+            return new AtualizarProdutoUseCaseImpl(produtoGateway, categoriaGateway);
         }
 }

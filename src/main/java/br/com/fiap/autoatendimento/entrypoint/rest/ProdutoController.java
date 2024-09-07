@@ -20,6 +20,7 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoOutp
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.ListarProdutosOutputDto;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -78,6 +79,7 @@ public class ProdutoController {
 
 	@PutMapping
     @ResponseStatus(HttpStatus.OK)
+    @Transactional
     public AtualizarProdutoResDto atualizar(@RequestBody @Valid AtualizarProdutoReqDto request) {
 
         final AtualizarProdutoInputDto input = AtualizarProdutoInputDto.builder()

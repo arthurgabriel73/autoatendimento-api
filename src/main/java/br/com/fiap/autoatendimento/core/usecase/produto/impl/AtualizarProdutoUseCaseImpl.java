@@ -9,18 +9,14 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoInpu
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.entity.produto.Categoria;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class AtualizarProdutoUseCaseImpl implements AtualizarProdutoUseCase {
 
     private final ProdutoGateway produtoGateway;
     private final CategoriaGateway categoriaGateway;
     
-    @Transactional
     @Override
     public AtualizarProdutoOutputDto executar(AtualizarProdutoInputDto input) {
 
