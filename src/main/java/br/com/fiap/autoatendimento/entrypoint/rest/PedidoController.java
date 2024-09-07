@@ -35,7 +35,7 @@ import java.io.IOException;
 public class PedidoController {
 
     public static final String IMAGE_PNG_VALUE = "image/png";
-    public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
+    public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "0.00" );
     private final CadastrarPedidoUseCase cadastrarPedidoUseCase;
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final ListarPedidosUseCase listarPedidosUseCase;
