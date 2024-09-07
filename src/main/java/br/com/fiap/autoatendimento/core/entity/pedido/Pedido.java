@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @Builder
@@ -48,11 +50,12 @@ public class Pedido {
         }
     }
 
-    public double calcularValorTotal() {
+    public Double calcularValorTotal() {
         double total = produtos.stream()
                 .mapToDouble(Produto::getPreco)
                 .sum();
-                return Math.round(total * 100.0) / 100.0;
+                
+        return BigDecimal.valueOf(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     public String calcularTempoEspera() {
