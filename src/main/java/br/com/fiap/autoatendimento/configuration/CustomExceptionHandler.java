@@ -144,4 +144,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
     }
 
+    @ExceptionHandler(StatusFinalException.class)
+    public ResponseEntity<Object> handleStatusFinalException(StatusFinalException exception,
+                                                                      WebRequest request) {
+
+        final ErrorMessage errorMessage = new ErrorMessage(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());
+
+        return new ResponseEntity<>(errorMessage, new HttpHeaders(), errorMessage.getStatus());
+    }
+
 }

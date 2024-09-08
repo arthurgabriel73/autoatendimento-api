@@ -22,8 +22,11 @@ public class Produto {
 	private Categoria categoria;
 
 	public void desativar() {
-
 		this.ativo = false;
+	}
+
+	public boolean isAtivo() {
+		return this.ativo;
 	}
   
 }

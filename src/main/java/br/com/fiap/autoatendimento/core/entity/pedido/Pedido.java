@@ -2,6 +2,7 @@ package br.com.fiap.autoatendimento.core.entity.pedido;
 
 import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
+import br.com.fiap.autoatendimento.core.exception.StatusFinalException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,10 +29,13 @@ public class Pedido {
     private LocalDateTime dataHoraFim;
 
     public void atualizarStatus(StatusPedido novoStatus) {
+        if (status.getNome().equalsIgnoreCase("FINALIZADO") || status.getNome().equalsIgnoreCase("CANCELADO")) {
+            throw new StatusFinalException("Não é possível avançar de pedido finalizado ou cancelado.");
+        }
+        
         this.status = novoStatus;
 
-        if (novoStatus.getNome().equalsIgnoreCase("FINALIZADO") ||
-                novoStatus.getNome().equalsIgnoreCase("CANCELADO")) {
+        if (novoStatus.getNome().equalsIgnoreCase("FINALIZADO") || novoStatus.getNome().equalsIgnoreCase("CANCELADO")) {
             this.dataHoraFim = LocalDateTime.now();
         }
     }

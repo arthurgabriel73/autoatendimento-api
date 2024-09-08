@@ -59,7 +59,7 @@ public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
             final Produto produto = produtoGateway.buscarPorIdProduto(idProduto)
                     .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado nao encontrado."));
 
-            if (!produto.getAtivo()) {
+            if (!produto.isAtivo()) {
                 throw new ProdutoInativoException("Produto inativo nao pode ser solicitado.");
             }
 
