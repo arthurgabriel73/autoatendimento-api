@@ -24,7 +24,7 @@ public class CadastrarClienteUseCaseImpl implements CadastrarClienteUseCase {
                 .email(new Email(input.getEmail()))
                 .build();
 
-        if (clienteGateway.buscarPorCpf(input.getCpf()).isPresent()) {
+        if (clienteGateway.buscarPorCpf(cliente.getCpf()).isPresent()) {
             throw new ClienteJaCadastradoException("Cliente ja cadastrado.");
         }
 

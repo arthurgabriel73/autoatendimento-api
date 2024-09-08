@@ -12,7 +12,7 @@ public class Cpf {
 			throw new ValidationException("CPF inválido");
 		}
 
-		this.value = value;
+		this.value = clean(value);
 	}
 
 	private boolean validate(String cpf) {
