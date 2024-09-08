@@ -52,7 +52,7 @@ E por fim, realizar o pagamento do pedido:
  - Ngrok instalado na máquina
 ### Passo a passo:
  - Executar o docker
- - Abrir um terminal de comandos (git bash por exemplo)
+ - Abrir um terminal de comandos (git bash por exemplo) e vá até a pasta do projeto
  - Executar o comando: docker-compose up -d
  - Executar o comando com o domínio reservado: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Utilizar a collection do Postman disponível em: **./collection/techchallengeautoatendimento.postman_collection.json**
