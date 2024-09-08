@@ -1,6 +1,7 @@
 package br.com.fiap.autoatendimento.core.entity.pagamento;
 
 import br.com.fiap.autoatendimento.core.entity.pedido.Pedido;
+import br.com.fiap.autoatendimento.core.exception.StatusFinalException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +23,9 @@ public class Pagamento {
     }
 
     public void atualizarStatus(StatusPagamento novoStatus) {
+        if (!status.getNome().equalsIgnoreCase("PENDENTE")) {
+            throw new StatusFinalException("Não é possível avançar de pagamento não pendente.");
+        }
         this.status = novoStatus;
     }
 
