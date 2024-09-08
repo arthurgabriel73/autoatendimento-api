@@ -53,10 +53,10 @@ E por fim, realizar o pagamento do pedido:
 ### Passo a passo:
  - Executar o docker
  - Abrir um terminal de comandos (git bash por exemplo)
- - Executar o comando: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Executar o comando: docker-compose up -d
+ - Executar o comando: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Utilizar a collection do Postman disponível em: **./collection/techchallengeautoatendimento.postman_collection.json**
- - Executar os endpoints através da especificação Open API
+ - Executar os endpoints no Postman
  
  ## Com Kubernetes
  ### Configuração dos secrets
