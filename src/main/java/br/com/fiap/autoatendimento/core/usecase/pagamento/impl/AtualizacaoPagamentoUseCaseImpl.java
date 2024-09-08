@@ -9,15 +9,11 @@ import br.com.fiap.autoatendimento.core.gateway.StatusPagamentoGateway;
 import br.com.fiap.autoatendimento.core.exception.PagamentoNaoEncontradoException;
 import br.com.fiap.autoatendimento.core.exception.PedidoNaoEncontradoException;
 import br.com.fiap.autoatendimento.core.exception.StatusPagamentoNaoEncontradoException;
-
 import br.com.fiap.autoatendimento.core.entity.pagamento.Pagamento;
 import br.com.fiap.autoatendimento.core.entity.pagamento.StatusPagamento;
 import br.com.fiap.autoatendimento.core.entity.pedido.Pedido;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseCase {
     
@@ -28,7 +24,6 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
     private final NotificacaoGateway notificacaoGateway;
 
     @Override
-    @Transactional
     public void executar(Integer idPedido, NotificacaoAtualizacaoPagamento notificacao) {
 
         if (!STATUS_PAGAMENTO_APROVADO.equalsIgnoreCase(notificacao.getStatusPagamento())) {
@@ -47,7 +42,7 @@ public class AtualizacaoPagamentoUseCaseImpl implements AtualizacaoPagamentoUseC
         final Pagamento pagamento = pagamentoGateway.buscarPorIdPedido(idPedido)
                 .orElseThrow(() -> new PagamentoNaoEncontradoException("Pagamento não encontrado."));
 
-        pagamento.setStatus(statusPagamento);
+        pagamento.atualizarStatus(statusPagamento);
         pagamentoGateway.atualizar(pagamento);
 
     }

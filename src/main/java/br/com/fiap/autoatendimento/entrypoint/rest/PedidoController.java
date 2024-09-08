@@ -11,6 +11,7 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.dto.AtualizarStatusPedido
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.ListarPedidosOutputDto;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,13 +35,14 @@ import java.io.IOException;
 public class PedidoController {
 
     public static final String IMAGE_PNG_VALUE = "image/png";
-    public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "#.00" );
+    public static final DecimalFormat DECIMAL_FORMAT_PRECO = new DecimalFormat( "0.00" );
     private final CadastrarPedidoUseCase cadastrarPedidoUseCase;
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final ListarPedidosUseCase listarPedidosUseCase;
 
 @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 @ResponseStatus(HttpStatus.CREATED)
+@Transactional
 public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
     final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
@@ -59,6 +61,7 @@ public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto
 
     @PatchMapping("/{idPedido}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Transactional
     public void atualizarStatus(@PathVariable Integer idPedido,
                                 @Valid @RequestBody AtualizarStatusPedidoReqDto request) {
 

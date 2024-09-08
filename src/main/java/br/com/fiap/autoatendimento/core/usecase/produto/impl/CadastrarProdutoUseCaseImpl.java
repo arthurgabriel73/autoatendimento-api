@@ -8,18 +8,14 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoInpu
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.entity.produto.Categoria;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class CadastrarProdutoUseCaseImpl implements CadastrarProdutoUseCase {
     
     private final ProdutoGateway produtoGateway;
     private final CategoriaGateway categoriaGateway;
 
-    @Transactional
     @Override
     public CadastrarProdutoOutputDto executar(CadastrarProdutoInputDto input) {
 

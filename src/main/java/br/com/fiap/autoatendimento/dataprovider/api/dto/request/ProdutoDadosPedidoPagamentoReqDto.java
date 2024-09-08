@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -26,7 +28,7 @@ public class ProdutoDadosPedidoPagamentoReqDto {
     private String description;
 
     @JsonProperty("unit_price")
-    private Double unitPrice;
+    private BigDecimal unitPrice;
 
     @JsonProperty("quantity")
     private Integer quantity;
@@ -35,6 +37,6 @@ public class ProdutoDadosPedidoPagamentoReqDto {
     private String unitMeasure;
 
     @JsonProperty("total_amount")
-    private Double totalAmount;
+    private BigDecimal totalAmount;
 
 }

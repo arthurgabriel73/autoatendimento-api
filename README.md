@@ -49,28 +49,51 @@ E por fim, realizar o pagamento do pedido:
 ## Com Docker
 ### Pré-requisitos:
  - Docker instalado na máquina
+ - Ngrok instalado na máquina
 ### Passo a passo:
  - Executar o docker
  - Abrir um terminal de comandos (git bash por exemplo)
+ - Executar o comando: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Executar o comando: docker-compose up -d
- - Abrir o browser e digitar o seguinte caminho: http://localhost:8080/swagger-ui/index.html
+ - Utilizar a collection do Postman disponível em: **./collection/techchallengeautoatendimento.postman_collection.json**
  - Executar os endpoints através da especificação Open API
  
  ## Com Kubernetes
+ ### Configuração dos secrets
+ 1. Crie um arquivo postgres-secret.yaml dentro do diretório k8s
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+stringData:
+  POSTGRES_ROOT_PASSWORD: {VALUE}
+  POSTGRES_DATABASE: {VALUE}
+  POSTGRES_USER: {VALUE}
+  POSTGRES_PASSWORD: {VALUE}
+```
+2. Aplique o arquivo
+ ```bash
+ kubectl apply -f postgres-secret.yaml
+ ```
  ### No diretório /k8s rode os seguintes comandos:
- #### 1 - Configurando o Banco de Dados
+ #### 1 - Configurando o serviço de tunelamento
+  ```bash
+ ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
+ ```
+ #### 2 - Configurando o Banco de Dados
  ```bash
  kubectl apply -f postgres_deployment.yaml
  ```
- #### 2 - Criando o deployment da aplicação
+ #### 3 - Criando o deployment da aplicação
  ```bash
  kubectl apply -f app_deployment.yaml
  ```
- #### 3 - Aplicando o metrics
+ #### 4 - Aplicando o metrics
  ```bash
  kubectl apply -f metrics.yaml
  ```
- #### 4 - Aplicando o HPA
+ #### 5 - Aplicando o HPA
  ```bash
  kubectl apply -f app_hpa.yaml
  ```

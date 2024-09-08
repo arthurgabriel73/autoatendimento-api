@@ -1,6 +1,8 @@
 package br.com.fiap.autoatendimento.entrypoint.rest.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -8,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Data
 @Builder
@@ -24,8 +28,10 @@ public class CadastrarProdutoReqDto {
     private String descricao;
 
     @PositiveOrZero
+    @NotNull
+    @Digits(integer = 10, fraction = 2)
     @JsonProperty("preco")
-    private Double preco;
+    private BigDecimal preco;
 
     @NotBlank
     @JsonProperty("imagem")

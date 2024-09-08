@@ -2,9 +2,10 @@ package br.com.fiap.autoatendimento.core.entity.pedido;
 
 import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
+import br.com.fiap.autoatendimento.core.exception.StatusFinalException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
@@ -12,56 +13,56 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.math.BigDecimal;
 
-@Data
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pedido {
 
-	private Integer idPedido;
-	private Cliente cliente;
-	private List<Produto> produtos;
-	private StatusPedido status;
-	private LocalDateTime dataHoraInicio;
-	private LocalDateTime dataHoraFim;
+    private Integer idPedido;
+    private Cliente cliente;
+    private List<Produto> produtos;
+    private StatusPedido status;
+    private LocalDateTime dataHoraInicio;
+    private LocalDateTime dataHoraFim;
 
-	public void atualizarStatus(StatusPedido status) {
+    public void atualizarStatus(StatusPedido novoStatus) {
+        if (status.getNome().equalsIgnoreCase("FINALIZADO") || status.getNome().equalsIgnoreCase("CANCELADO")) {
+            throw new StatusFinalException("Não é possível avançar de pedido finalizado ou cancelado.");
+        }
+        
+        this.status = novoStatus;
 
-		this.status = status;
-	}
+        if (novoStatus.getNome().equalsIgnoreCase("FINALIZADO") || novoStatus.getNome().equalsIgnoreCase("CANCELADO")) {
+            this.dataHoraFim = LocalDateTime.now();
+        }
+    }
 
-	public void adicionarProduto(Produto produto) {
+    public void adicionarProduto(Produto produto) {
+        if (produtos == null) {
+            produtos = new ArrayList<>();
+        }
+        produtos.add(produto);
+    }
 
-		if (produtos == null) {
-			produtos = new ArrayList<>();
-		}
+    public void removerProduto(Produto produto) {
+        if (produtos != null) {
+            produtos.remove(produto);
+        }
+    }
 
-		produtos.add(produto);
-	}
+    public BigDecimal calcularValorTotal() {
+        return produtos.stream()
+                .map(Produto::getPreco)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
-	public void removerProduto(Produto produto) {
-
-		if (produtos != null) {
-			produtos.remove(produto);
-		}
-
-	}
-
-	public double calcularValorTotal() {
-
-		return produtos.stream()
-			.mapToDouble(Produto::getPreco)
-			.sum();
-	}
-
-	public String calcularTempoEspera() {
-
-		final Duration duration = Objects.isNull(dataHoraFim) ?
-				Duration.between(dataHoraInicio, LocalDateTime.now()) : Duration.between(dataHoraInicio, dataHoraFim);
-		final Long minutes = duration.toMinutes();
-
-		return minutes.toString() + " minutos";
-	}
-
+    public String calcularTempoEspera() {
+        final Duration duration = Objects.isNull(dataHoraFim) ?
+                Duration.between(dataHoraInicio, LocalDateTime.now()) : Duration.between(dataHoraInicio, dataHoraFim);
+        final Long minutes = duration.toMinutes();
+        return minutes.toString() + " minutos";
+    }
 }

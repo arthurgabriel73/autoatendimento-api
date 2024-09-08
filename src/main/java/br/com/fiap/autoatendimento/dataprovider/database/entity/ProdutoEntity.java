@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "produto")
@@ -30,7 +31,7 @@ public class ProdutoEntity implements Serializable {
     private String descricao;
 
     @Column(name = "preco")
-    private Double preco;
+    private BigDecimal preco;
 
     @Column(name = "imagem")
     private String imagem;

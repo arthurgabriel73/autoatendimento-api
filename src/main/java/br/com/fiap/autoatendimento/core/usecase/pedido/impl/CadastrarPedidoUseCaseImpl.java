@@ -20,8 +20,6 @@ import br.com.fiap.autoatendimento.core.entity.pagamento.StatusPagamento;
 import br.com.fiap.autoatendimento.core.entity.pedido.Pedido;
 import br.com.fiap.autoatendimento.core.entity.pedido.StatusPedido;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.image.BufferedImage;
@@ -30,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Named
 @RequiredArgsConstructor
 public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
 
@@ -44,7 +41,6 @@ public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
     private final StatusPagamentoGateway statusPagamentoGateway;
     private final QRCodeServiceGateway QRCodePortOut;
 
-    @Transactional
     @Override
     public CadastrarPedidoOutputDto executar(CadastrarPedidoInputDto input) {
 
@@ -63,7 +59,7 @@ public class CadastrarPedidoUseCaseImpl implements CadastrarPedidoUseCase {
             final Produto produto = produtoGateway.buscarPorIdProduto(idProduto)
                     .orElseThrow(() -> new ProdutoNaoEncontradoException("Produto informado nao encontrado."));
 
-            if (!produto.getAtivo()) {
+            if (!produto.isAtivo()) {
                 throw new ProdutoInativoException("Produto inativo nao pode ser solicitado.");
             }
 

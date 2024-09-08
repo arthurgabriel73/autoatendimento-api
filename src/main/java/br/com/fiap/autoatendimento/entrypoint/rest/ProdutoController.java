@@ -20,6 +20,7 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoOutp
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.ListarProdutosOutputDto;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +37,7 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Transactional
     public CadastrarProdutoResDto cadastrar(@RequestBody @Valid CadastrarProdutoReqDto request) {
 
         final CadastrarProdutoInputDto input = CadastrarProdutoInputDto.builder()
@@ -78,6 +80,7 @@ public class ProdutoController {
 
 	@PutMapping
     @ResponseStatus(HttpStatus.OK)
+    @Transactional
     public AtualizarProdutoResDto atualizar(@RequestBody @Valid AtualizarProdutoReqDto request) {
 
         final AtualizarProdutoInputDto input = AtualizarProdutoInputDto.builder()

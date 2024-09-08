@@ -9,18 +9,14 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoInpu
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.entity.produto.Categoria;
 import br.com.fiap.autoatendimento.core.entity.produto.Produto;
-import jakarta.inject.Named;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class AtualizarProdutoUseCaseImpl implements AtualizarProdutoUseCase {
 
     private final ProdutoGateway produtoGateway;
     private final CategoriaGateway categoriaGateway;
     
-    @Transactional
     @Override
     public AtualizarProdutoOutputDto executar(AtualizarProdutoInputDto input) {
 
@@ -30,15 +26,17 @@ public class AtualizarProdutoUseCaseImpl implements AtualizarProdutoUseCase {
         final Categoria categoria = categoriaGateway.buscarPorNome(input.getCategoria())
                 .orElseThrow(() -> new CategoriaNaoEncontradaException("Categoria não encontrada."));
 
-        produto.setIdProduto(input.getIdProduto());
-        produto.setNome(input.getNome());
-        produto.setDescricao(input.getDescricao());
-        produto.setPreco(input.getPreco());
-        produto.setImagem(input.getImagem());
-        produto.setAtivo(input.getAtivo());
-        produto.setCategoria(categoria);
+        final Produto updatedProduto = Produto.builder()
+            .idProduto(produto.getIdProduto())
+            .nome(input.getNome())
+            .descricao(input.getDescricao())
+            .preco(input.getPreco())
+            .imagem(input.getImagem())
+            .ativo(input.getAtivo())
+            .categoria(categoria)
+            .build();
 
-        final Integer idProduto = produtoGateway.atualizar(produto);
+        final Integer idProduto = produtoGateway.atualizar(updatedProduto);
 
         produto.getCategoria();
 

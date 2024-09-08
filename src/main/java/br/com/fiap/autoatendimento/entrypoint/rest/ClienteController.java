@@ -9,6 +9,7 @@ import br.com.fiap.autoatendimento.core.usecase.cliente.dto.CadastrarClienteInpu
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ClienteController {
 
+    private final BuscarClientePorCpfUseCase buscarClienteUseCase;
     private final CadastrarClienteUseCase cadastrarClienteUseCase;
-    private final BuscarClientePorCpfUseCase buscarClientePortIn;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Transactional
     public void cadastrar(@Valid @RequestBody CadastrarClienteReqDto request) {
 
         final CadastrarClienteInputDto input = CadastrarClienteInputDto.builder()
@@ -38,7 +40,7 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.OK)
     public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable String cpf) {
         
-        final BuscarClientePorCpfOutputDto output = buscarClientePortIn.executar(cpf);
+        final BuscarClientePorCpfOutputDto output = buscarClienteUseCase.executar(cpf);
 
         return BuscarClientePorCpfResDto.builder()
                 .cpf(output.getCpf())

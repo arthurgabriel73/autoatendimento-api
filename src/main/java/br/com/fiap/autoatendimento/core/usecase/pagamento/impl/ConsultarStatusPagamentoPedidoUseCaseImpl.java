@@ -6,10 +6,8 @@ import br.com.fiap.autoatendimento.core.exception.PagamentoNaoEncontradoExceptio
 import br.com.fiap.autoatendimento.core.usecase.pagamento.dto.ConsultarStatusPagamentoPedidoOutputDto;
 import br.com.fiap.autoatendimento.core.entity.pagamento.Pagamento;
 
-import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
-@Named
 @RequiredArgsConstructor
 public class ConsultarStatusPagamentoPedidoUseCaseImpl implements ConsultarStatusPagamentoPedidoUseCase {
     

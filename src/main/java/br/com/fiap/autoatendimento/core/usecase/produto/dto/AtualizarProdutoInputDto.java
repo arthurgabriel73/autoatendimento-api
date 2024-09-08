@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -14,7 +16,7 @@ public class AtualizarProdutoInputDto {
     private Integer idProduto;
     private String nome;
     private String descricao;
-    private Double preco;
+    private BigDecimal preco;
     private String imagem;
     private Boolean ativo;
     private String categoria;
