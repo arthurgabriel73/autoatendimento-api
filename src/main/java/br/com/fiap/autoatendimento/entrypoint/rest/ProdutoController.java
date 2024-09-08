@@ -20,7 +20,7 @@ import br.com.fiap.autoatendimento.core.usecase.produto.dto.AtualizarProdutoOutp
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.CadastrarProdutoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.produto.dto.ListarProdutosOutputDto;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

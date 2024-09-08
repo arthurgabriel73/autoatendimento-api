@@ -11,7 +11,7 @@ import br.com.fiap.autoatendimento.core.usecase.pedido.dto.AtualizarStatusPedido
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoInputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.CadastrarPedidoOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.pedido.dto.ListarPedidosOutputDto;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

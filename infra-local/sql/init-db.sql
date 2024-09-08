@@ -8,7 +8,7 @@ CREATE TABLE produto(
     id_produto SERIAL NOT NULL,
     nome VARCHAR(100) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
-    preco NUMERIC NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
     imagem VARCHAR(200) NOT NULL,
     ativo BOOLEAN NOT NULL,
     id_categoria INTEGER NOT NULL,
