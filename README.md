@@ -60,17 +60,17 @@ E por fim, realizar o pagamento do pedido:
  
  ## Com Kubernetes
  ### Configuração dos secrets
- 1. Crie um arquivo postgres-secret.yaml dentro do diretório ./k8s (Coloque os valores desejados onde está {VALUE})
+ 1. Crie um arquivo postgres-secret.yaml dentro do diretório ./k8s
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
   name: postgres-secret
 stringData:
-  POSTGRES_ROOT_PASSWORD: {VALUE}
-  POSTGRES_DATABASE: {VALUE}
-  POSTGRES_USER: {VALUE}
-  POSTGRES_PASSWORD: {VALUE}
+  POSTGRES_ROOT_PASSWORD: password
+  POSTGRES_DATABASE: autoatendimento
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: password
 ```
 2. Aplique o arquivo
  ```bash
