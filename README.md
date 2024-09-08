@@ -54,13 +54,13 @@ E por fim, realizar o pagamento do pedido:
  - Executar o docker
  - Abrir um terminal de comandos (git bash por exemplo)
  - Executar o comando: docker-compose up -d
- - Executar o comando: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
+ - Executar o comando com o domínio reservado: ngrok http --domain=bold-caring-mole.ngrok-free.app 8080
  - Utilizar a collection do Postman disponível em: **./collection/techchallengeautoatendimento.postman_collection.json**
  - Executar os endpoints no Postman
  
  ## Com Kubernetes
  ### Configuração dos secrets
- 1. Crie um arquivo postgres-secret.yaml dentro do diretório k8s
+ 1. Crie um arquivo postgres-secret.yaml dentro do diretório ./k8s (Coloque os valores desejados onde está {VALUE})
 ```yaml
 apiVersion: v1
 kind: Secret
