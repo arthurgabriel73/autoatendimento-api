@@ -97,6 +97,10 @@ stringData:
  ```bash
  kubectl apply -f app_hpa.yaml
  ```
+ 6 - Caso esteja utilizando o minikube no WSL2, utilize o seguinte comando para direcionar as requisições:
+ ```bash
+ kubectl port-forward svc/autoatendimento-app-service 8080:8080
+ ```
  ### Documentação do sistema (DDD) com Event Storming: https://miro.com/app/board/uXjVKKXvR9g=/
  ### Link do vídeo no youtube demonstrando o funcionamento do kubernetes: https://www.youtube.com/watch?v=AqKuZsq5wAE
 
