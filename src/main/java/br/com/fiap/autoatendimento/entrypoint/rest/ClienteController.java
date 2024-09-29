@@ -1,12 +1,15 @@
 package br.com.fiap.autoatendimento.entrypoint.rest;
 
+import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.AutenticarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.BuscarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.CadastrarClienteReqDto;
+import br.com.fiap.autoatendimento.core.usecase.cliente.AutenticarClientePorCpfUsecase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.BuscarClientePorCpfUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.CadastrarClienteInputDto;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +24,7 @@ public class ClienteController {
 
     private final BuscarClientePorCpfUseCase buscarClienteUseCase;
     private final CadastrarClienteUseCase cadastrarClienteUseCase;
+    private final AutenticarClientePorCpfUsecase autenticarClienteUsecase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,7 +42,7 @@ public class ClienteController {
 
     @GetMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
-    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable String cpf) {
+    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable @NotBlank String cpf) {
         
         final BuscarClientePorCpfOutputDto output = buscarClienteUseCase.executar(cpf);
 
@@ -48,6 +52,15 @@ public class ClienteController {
                 .email(output.getEmail())
                 .build();
 
+    }
+
+    @PostMapping("/autenticar/{cpf}")
+    public AutenticarClientePorCpfResDto login(@PathVariable String cpf) {
+        String token = autenticarClienteUsecase.executar(cpf);
+        return AutenticarClientePorCpfResDto.builder()
+                .cpf(cpf)
+                .token(token)
+                .build();
     }
 
 }

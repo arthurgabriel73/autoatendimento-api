@@ -3,6 +3,7 @@ package br.com.fiap.autoatendimento.configuration.ioc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import br.com.fiap.autoatendimento.configuration.security.TokenProvider;
 import br.com.fiap.autoatendimento.core.gateway.CategoriaGateway;
 import br.com.fiap.autoatendimento.core.gateway.ClienteGateway;
 import br.com.fiap.autoatendimento.core.gateway.NotificacaoGateway;
@@ -12,8 +13,10 @@ import br.com.fiap.autoatendimento.core.gateway.ProdutoGateway;
 import br.com.fiap.autoatendimento.core.gateway.QRCodeServiceGateway;
 import br.com.fiap.autoatendimento.core.gateway.StatusPagamentoGateway;
 import br.com.fiap.autoatendimento.core.gateway.StatusPedidoGateway;
+import br.com.fiap.autoatendimento.core.usecase.cliente.AutenticarClientePorCpfUsecase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.BuscarClientePorCpfUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
+import br.com.fiap.autoatendimento.core.usecase.cliente.impl.AutenticarClientePorCpfUsecaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.BuscarClientePorCpfUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.cliente.impl.CadastrarClienteUseCaseImpl;
 import br.com.fiap.autoatendimento.core.usecase.pagamento.AtualizacaoPagamentoUseCase;
@@ -110,5 +113,10 @@ public class UseCasesBeanConfiguration {
     @Bean ListarStatusPedidosUseCase listarStatusPedidosUseCase(
         StatusPedidoGateway statusPedidoGateway) {
             return new ListarStatusPedidosUseCaseImpl(statusPedidoGateway);
+        }
+
+    @Bean AutenticarClientePorCpfUsecase autenticarClienteUsecase(
+        TokenProvider tokenProvider) {
+            return new AutenticarClientePorCpfUsecaseImpl(tokenProvider);
         }
 }
