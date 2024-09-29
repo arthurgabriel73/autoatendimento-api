@@ -116,7 +116,7 @@ public class UseCasesBeanConfiguration {
         }
 
     @Bean AutenticarClientePorCpfUsecase autenticarClienteUsecase(
-        TokenProvider tokenProvider) {
-            return new AutenticarClientePorCpfUsecaseImpl(tokenProvider);
+        TokenProvider tokenProvider, ClienteGateway clienteGateway) {
+            return new AutenticarClientePorCpfUsecaseImpl(tokenProvider, clienteGateway);
         }
 }
