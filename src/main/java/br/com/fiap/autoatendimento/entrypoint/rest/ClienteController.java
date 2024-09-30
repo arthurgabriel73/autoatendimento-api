@@ -53,8 +53,8 @@ public class ClienteController {
 
     }
 
-    @PostMapping("/autenticar")
-    public AutenticarClientePorCpfResDto login(@RequestParam(name = "cpf", required = false ) String cpf) {
+    @PostMapping("/autenticar/{cpf}")
+    public AutenticarClientePorCpfResDto login(@PathVariable(name = "cpf", required = false ) String cpf) {
         String token = autenticarClienteUsecase.executar(cpf);
         return AutenticarClientePorCpfResDto.builder()
                 .cpf(cpf)
