@@ -100,7 +100,7 @@ public class ProdutoController {
 
 	@DeleteMapping("/{idProduto}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Integer idProduto) {
+	public void remover(@PathVariable(name="idProduto", required = true) Integer idProduto) {
 
 		removerProdutoUseCase.executar(idProduto);
 

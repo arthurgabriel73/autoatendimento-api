@@ -9,7 +9,6 @@ import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.CadastrarClienteInputDto;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +41,7 @@ public class ClienteController {
 
     @GetMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
-    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable @NotBlank String cpf) {
+    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable(name="cpf", required = true) String cpf) {
         
         final BuscarClientePorCpfOutputDto output = buscarClienteUseCase.executar(cpf);
 
@@ -55,7 +54,7 @@ public class ClienteController {
     }
 
     @PostMapping("/autenticar/{cpf}")
-    public AutenticarClientePorCpfResDto login(@PathVariable String cpf) {
+    public AutenticarClientePorCpfResDto login(@PathVariable(name="cpf", required = false) String cpf) {
         String token = autenticarClienteUsecase.executar(cpf);
         return AutenticarClientePorCpfResDto.builder()
                 .cpf(cpf)

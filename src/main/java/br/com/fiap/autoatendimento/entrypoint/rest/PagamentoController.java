@@ -23,7 +23,7 @@ public class PagamentoController {
 
     @GetMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
-    public ConsultarStatusPagamentoPedidoResDto consultarStatusPagamentoPedido(@PathVariable Integer idPedido) {
+    public ConsultarStatusPagamentoPedidoResDto consultarStatusPagamentoPedido(@PathVariable(name="idPedido", required = true) Integer idPedido) {
         
         final ConsultarStatusPagamentoPedidoOutputDto output = consultarStatusPagamentoPedidoUseCase.executar(idPedido);
 
