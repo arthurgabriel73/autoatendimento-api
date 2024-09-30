@@ -4,6 +4,8 @@ import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.AtualizarStatusPe
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.CadastrarPedidoResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.ListarPedidosResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.CadastrarPedidoReqDto;
+import br.com.fiap.autoatendimento.configuration.security.ClienteAutenticado;
+import br.com.fiap.autoatendimento.core.entity.cliente.Cliente;
 import br.com.fiap.autoatendimento.core.usecase.pedido.AtualizarStatusPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.CadastrarPedidoUseCase;
 import br.com.fiap.autoatendimento.core.usecase.pedido.ListarPedidosUseCase;
@@ -39,14 +41,17 @@ public class PedidoController {
     private final CadastrarPedidoUseCase cadastrarPedidoUseCase;
     private final AtualizarStatusPedidoUseCase atualizarStatusPedidoUseCase;
     private final ListarPedidosUseCase listarPedidosUseCase;
+    private final ClienteAutenticado clienteAutenticado;
 
 @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 @ResponseStatus(HttpStatus.CREATED)
 @Transactional
 public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto request) throws IOException {
 
+    String cpfCliente = clienteAutenticado.getCliente().map(Cliente::getCpf).orElse(null);
+
     final CadastrarPedidoInputDto input = CadastrarPedidoInputDto.builder()
-            .cpf(request.getCpf())
+            .cpf(cpfCliente)
             .produtos(request.getProdutos())
             .build();
 
