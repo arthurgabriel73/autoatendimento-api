@@ -41,7 +41,7 @@ public class ClienteController {
 
     @GetMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
-    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable(name="cpf", required = true) String cpf) {
+    public BuscarClientePorCpfResDto buscarPorCpf(@PathVariable(name = "cpf", required = true) String cpf) {
         
         final BuscarClientePorCpfOutputDto output = buscarClienteUseCase.executar(cpf);
 
@@ -53,8 +53,8 @@ public class ClienteController {
 
     }
 
-    @PostMapping("/autenticar/{cpf}")
-    public AutenticarClientePorCpfResDto login(@PathVariable(name="cpf", required = false) String cpf) {
+    @PostMapping("/autenticar")
+    public AutenticarClientePorCpfResDto login(@RequestParam(name = "cpf", required = false ) String cpf) {
         String token = autenticarClienteUsecase.executar(cpf);
         return AutenticarClientePorCpfResDto.builder()
                 .cpf(cpf)

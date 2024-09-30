@@ -31,7 +31,7 @@ public class AtualizacaoPagamentoWebhookController {
     @PostMapping("/pedido/{idPedido}")
     @ResponseStatus(HttpStatus.OK)
     @Transactional
-    public void handleAtualizacaoPagamento(@PathVariable(name="idPedido", required = true) Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
+    public void handleAtualizacaoPagamento(@PathVariable(name = "idPedido", required = true) Integer idPedido, @RequestBody NotificarPagamentoReqDto request) {
 
         log.info("{}Atualização de pagamento recebida para o pedido {}: \n{}{}", CYAN.getCode(), idPedido, request, RESET.getCode());
         

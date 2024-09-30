@@ -62,7 +62,7 @@ public CadastrarPedidoResDto cadastrar(@Valid @RequestBody CadastrarPedidoReqDto
     @PatchMapping("/{idPedido}/status")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
-    public void atualizarStatus(@PathVariable(name="idPedido", required = true) Integer idPedido,
+    public void atualizarStatus(@PathVariable(name = "idPedido", required = true) Integer idPedido,
                                 @Valid @RequestBody AtualizarStatusPedidoReqDto request) {
 
         final AtualizarStatusPedidoInputDto input = AtualizarStatusPedidoInputDto.builder()
