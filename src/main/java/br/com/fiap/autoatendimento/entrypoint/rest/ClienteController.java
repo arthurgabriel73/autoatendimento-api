@@ -1,9 +1,7 @@
 package br.com.fiap.autoatendimento.entrypoint.rest;
 
-import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.AutenticarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.response.BuscarClientePorCpfResDto;
 import br.com.fiap.autoatendimento.entrypoint.rest.dto.request.CadastrarClienteReqDto;
-import br.com.fiap.autoatendimento.core.usecase.cliente.AutenticarClientePorCpfUsecase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.BuscarClientePorCpfUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.CadastrarClienteUseCase;
 import br.com.fiap.autoatendimento.core.usecase.cliente.dto.BuscarClientePorCpfOutputDto;
@@ -23,7 +21,6 @@ public class ClienteController {
 
     private final BuscarClientePorCpfUseCase buscarClienteUseCase;
     private final CadastrarClienteUseCase cadastrarClienteUseCase;
-    private final AutenticarClientePorCpfUsecase autenticarClienteUsecase;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,15 +48,6 @@ public class ClienteController {
                 .email(output.getEmail())
                 .build();
 
-    }
-
-    @PostMapping("/autenticar/{cpf}")
-    public AutenticarClientePorCpfResDto login(@PathVariable(name = "cpf", required = true ) String cpf) {
-        String token = autenticarClienteUsecase.executar(cpf);
-        return AutenticarClientePorCpfResDto.builder()
-                .cpf(cpf)
-                .token(token)
-                .build();
     }
 
 }
