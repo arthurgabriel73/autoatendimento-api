@@ -39,3 +39,4 @@ out/
 ### secrets ###
 k8s/postgres-secret.yaml
 scripts.txt
+dev.properties
