@@ -15,7 +15,7 @@ services:
       - ./infra-local/sql/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
   autoatendimento:
-    image: arthurgabriel73/autoatendimento:2.0
+    image: arthurgabriel73/autoatendimento:3.0
     depends_on:
       - postgres
     environment:
