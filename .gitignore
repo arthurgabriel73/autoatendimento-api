@@ -40,3 +40,9 @@ out/
 k8s/postgres-secret.yaml
 scripts.txt
 dev.properties
+
+.env
+.env.dev
+.env.prod
+.env.test
+.env.local
