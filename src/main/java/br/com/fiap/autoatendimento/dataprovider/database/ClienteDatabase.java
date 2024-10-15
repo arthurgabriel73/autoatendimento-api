@@ -9,6 +9,7 @@ import br.com.fiap.autoatendimento.core.entity.cliente.Email;
 import jakarta.inject.Named;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @Named
@@ -37,6 +38,20 @@ public class ClienteDatabase implements ClienteGateway {
                         .cpf(new Cpf(entity.getCpf()))
                         .nome(entity.getNome())
                         .email(new Email(entity.getEmail()))
+                        .build());
+    }
+
+    @Override
+    public Optional<Cliente> buscarPorEmail(String email) {
+
+        List<ClienteEntity> clientes = clienteRepository.findByEmail(email);
+
+        return clientes.isEmpty() ?
+                Optional.empty() :
+                Optional.of(Cliente.builder()
+                        .cpf(new Cpf(clientes.get(0).getCpf()))
+                        .nome(clientes.get(0).getNome())
+                        .email(new Email(clientes.get(0).getEmail()))
                         .build());
     }
 
