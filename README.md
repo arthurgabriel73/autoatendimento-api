@@ -105,3 +105,13 @@ stringData:
  ### Link do vídeo no youtube demonstrando o funcionamento do kubernetes: https://www.youtube.com/watch?v=AqKuZsq5wAE
 
  ### A Collection to postman está em ``./collection``
+
+ # Banco de Dados
+ ### ERD
+ ![alt text](image.png)
+### Melhorias
+#### Adição de índices na tabela:
+ Para melhorar a performance de queries SQL. Agora, além do cpf do usuário ser uma chave indexada, o email também é. Isso ajuda a melhorar a performance de verificação de conflito de usuários.
+
+#### Versionamento do Banco de Dados: 
+Nessa versão da aplicação foi adicionado o "flyway" para que possamos versionar o banco de dados e também o utilizei para inserir alguns dados iniciais para testes de forma mais segura.
