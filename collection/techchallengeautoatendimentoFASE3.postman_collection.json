@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "c4d47319-ba10-47f7-8313-7fdd28ad4035",
+		"name": "techchallengeautoatendimento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33621148",
+		"_collection_link": "https://grey-space-631935.postman.co/workspace/New-Team-Workspace~12d380ae-1991-4392-a01f-402bd5b22336/collection/33621148-c4d47319-ba10-47f7-8313-7fdd28ad4035?action=share&source=collection_link&creator=33621148"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Listar Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/produtos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produtos por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/produtos?categoria=Lanche",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "Lanche"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Combo 2\",\r\n\t\"descricao\": \"Barca de sushi G + Refrigerante 2 litros\",\r\n\t\"preco\": 154.00,\r\n\t\"imagem\": \"www.imagem2.com.br\",\r\n\t\"ativo\": true,\r\n\t\"categoria\": \"Lanche\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/produtos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Combo 2 - Atualizado\",\r\n\t\"descricao\": \"Barca de sushi G + Refrigerante 2 litros\",\r\n\t\"preco\": 154.00,\r\n\t\"imagem\": \"www.imagem2.com.br\",\r\n\t\"ativo\": true,\r\n\t\"categoria\": \"Lanche\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/produtos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/produtos/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Buscar Cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/clientes/80350595054",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clientes",
+								"80350595054"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"80350595054\",\r\n    \"nome\": \"Jose das Couvessss\",\r\n    \"email\": \"arthurgabriel73@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clientes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autenticar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"80350595054\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lambda}}/autenticar",
+							"host": [
+								"{{lambda}}"
+							],
+							"path": [
+								"autenticar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Cadastrar Pedido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let template = `\r",
+									"<img src='{{img}}'/>\r",
+									"`;\r",
+									"\r",
+									"const imageSrc = \"data:image/jpeg;base64,\" + pm.response.json()[\"qrCodeImage\"];\r",
+									"pm.visualizer.set(template, {\r",
+									"        img: imageSrc\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MDM1MDU5NTA1NCIsImlhdCI6MTcyNzgxMzA4NCwiZXhwIjoxNzI3ODE2Njg0fQ.Vh-q2zHzM3IK5MBCDeI5jWbJotjeT3EVtduxIHEcCrw",
+								"description": "lambda",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"80350595054\",\r\n    \"produtos\": [\r\n        1, 2\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/pedidos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pedidos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Status de Pedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_status_pedido\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/pedidos/1/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pedidos",
+								"1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pagamentos",
+			"item": [
+				{
+					"name": "Chamar WebHook Notificação Pagamento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resource\": \"https://api.mercadopago.com\",\r\n    \"topic\": \"payment\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/pagamentos/pedido/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pagamentos",
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Pagamento de Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/pagamentos/pedido/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"pagamentos",
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StatusPedido",
+			"item": [
+				{
+					"name": "Listar Status Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/statuspedidos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"statuspedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fluxo de Pedido",
+			"item": [
+				{
+					"name": "Crie alguns Produtos",
+					"item": [
+						{
+							"name": "Criar Produto 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Coca-cola 350ml\",\r\n\t\"descricao\": \"Coca-cola 350ml\",\r\n\t\"preco\": 0.03,\r\n\t\"imagem\": \"www.imagem2.com.br\",\r\n\t\"ativo\": true,\r\n\t\"categoria\": \"Bebida\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/produtos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Produto 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Combo 1\",\r\n\t\"descricao\": \"Barca de sushi P + Refrigerante 1 litro\",\r\n\t\"preco\": 0.54,\r\n\t\"imagem\": \"www.imagem2.com.br\",\r\n\t\"ativo\": true,\r\n\t\"categoria\": \"Lanche\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/produtos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Criar Produto 3",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Combo 2\",\r\n\t\"descricao\": \"Barca de sushi G + Refrigerante 2 litros\",\r\n\t\"preco\": 0.78,\r\n\t\"imagem\": \"www.imagem2.com.br\",\r\n\t\"ativo\": true,\r\n\t\"categoria\": \"Lanche\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/produtos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Registre um Cliente e faça um Pedido",
+					"item": [
+						{
+							"name": "Cadastrar Cliente",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cpf\": \"80350595054\",\r\n    \"nome\": \"José das Couves\",\r\n    \"email\": \"arthurgabriel73@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/clientes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Cliente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/clientes/80350595054",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"clientes",
+										"80350595054"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Autenticar Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cpf\": \"80350595054\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lambda}}/autenticar",
+									"host": [
+										"{{lambda}}"
+									],
+									"path": [
+										"autenticar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar Pedido",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let template = `\r",
+											"<img src='{{img}}'/>\r",
+											"`;\r",
+											"\r",
+											"const imageSrc = \"data:image/jpeg;base64,\" + pm.response.json()[\"qrCodeImage\"];\r",
+											"pm.visualizer.set(template, {\r",
+											"        img: imageSrc\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MDM1MDU5NTA1NCIsImlhdCI6MTcyODg1NDM5NSwiZXhwIjoxNzI4ODU3OTk1fQ.j-uqF4T875m2jnDCjnm6vVriEJtn5pYUU41w_tj1dpE",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cpf\": \"80350595054\",\r\n    \"produtos\": [\r\n        1, 2\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pedidos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Chame o Webhook para aprovar Pagamento",
+					"item": [
+						{
+							"name": "Chamar WebHook Notificação Pagamento",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"resource\": \"https://api.mercadopago.com\",\r\n    \"topic\": \"payment\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pagamentos/pedido/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pagamentos",
+										"pedido",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Pagamento de Pedido",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/pagamentos/pedido/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pagamentos",
+										"pedido",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Consulte os Pedidos",
+					"item": [
+						{
+							"name": "Listar Pedidos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/pedidos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Atualize os Status dos Pedidos",
+					"item": [
+						{
+							"name": "Pedido em preparação",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_status_pedido\": \"2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pedidos/1/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pedido pronto",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_status_pedido\": \"3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pedidos/1/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pedido finalizado",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_status_pedido\": \"4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pedidos/1/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancelar Pedido",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_status_pedido\": \"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/pedidos/1/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"pedidos",
+										"1",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "serverless",
+			"item": [
+				{
+					"name": "Autenticar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"80350595054\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lambda}}/autenticar",
+							"host": [
+								"{{lambda}}"
+							],
+							"path": [
+								"autenticar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HealthCheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/health-check",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"health-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
